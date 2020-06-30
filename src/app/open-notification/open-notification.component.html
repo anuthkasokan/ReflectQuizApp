@@ -1,0 +1,45 @@
+<div class="main-content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header card-header-primary" >
+                        <h2 *ngIf="!showBlindSpot" class="card-title">Feedback by Admin</h2>
+                        <h2 *ngIf="showBlindSpot" class="card-title">Select Adjectives for {{notification.userid}}</h2>
+                    </div>
+                    <div class="card-body">
+                        <form [formGroup]="saveFeedback">
+                            <div class="row" *ngIf="!showBlindSpot">
+                                <div class="col-md-12">
+                                  <h4>{{notification.question}}</h4>
+                                </div>
+                                <div class="col-md-12">
+                                    <p>Reply:</p>
+                                   
+                                        <textarea matInput placeholder="Add reply..." class="form-control col-md-12" formControlName="feedback" width="100%" maxlength="200"></textarea>
+                                </div>
+                            
+                            </div>
+                            <div class="row" *ngIf="showBlindSpot" style="border: 0.5px solid #0033a0;">
+                                <div  *ngFor="let adjective of adjectives.adjectives" class="col-md-3">
+                            
+                                    <button mat-raised-button type="button" [disabled]="disableAdjective" id="{{adjective}}_n"  (click)="onClick(adjective);" [value]="adjective" class="btn btn-info ">{{adjective}}</button>
+      
+                                          <div class="clearfix"></div>
+                                    </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-3"></div>
+                                <button mat-raised-button type="button" (click)="submitNotification(saveFeedback)"  class="btn btn-info col-md-3">Save Feedback</button>
+                                <button mat-raised-button type="button" (click)="cancelDialog()"  class="btn btn-info col-md-3">Cancel</button>
+                                <div class="col-md-3"></div> 
+                            </div>                             <div class="clearfix"></div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+  </div>
+  

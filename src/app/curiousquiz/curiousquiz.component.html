@@ -1,0 +1,131 @@
+<div class="main-content" *ngIf ="showScore">
+  <div class="container-fluid" >
+      <div class="row">
+        <div class="col-md-2"></div>
+            <div class="col-md-8" >
+              <div class="card " style="top: 50px;">
+                <div class="card-body">
+                  <div class="row">
+                    
+                    <div class="col-md-6">
+                      <div class="row">
+                          <span class="col-md-12" style="color: #328dff; font-size: xxx-large; top: 20px;">Your Score:</span>
+                          <div class="col-md-12 row" style="font-size: 100px;top: 100px;">
+                            <span  class="col-md-12">{{finalScore}}</span>
+                            <span class="col-md-12" style="top: 0px;margin-left: 105px;">/</span>
+                            <span class="col-md-12" style="top: 35px;margin-left: 125px;">{{questions.length-1}}</span>
+                          </div>
+                      </div>
+                    </div>
+                    <div class="col-md-6">
+                      <img style="float: right;height: 300px;" src="/assets/img/showScore.png"/>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+        </div>
+        <div class="row">
+          <div class="col-md-2"></div>
+              <div class="col-md-8" >
+                <div class="card " style="top: 10px;">
+                  <div class="card-body">
+                    <p *ngIf="score > 10" class="card-header-info" style="margin-top: 0px;font-size: 20px;">You are highly curious and can spread your curiosity to others and have a high need for cognition</p>
+                    <p *ngIf="score > 4 && score < 10" class="card-header-info" style="margin-top: 0px;font-size: 20px;">You are curious and can continue to grow in your curiosity and your need for cognition in typical to your peers</p>
+                    <p *ngIf="score < 5" class="card-header-info" style="margin-top: 0px;font-size: 20px;">You are on a curiosity journey and will continue to grow and work on developing your need for cognition</p>
+
+                  </div>
+                  <div class="card-body">
+                    <div class="row">
+                      <div class="col-md-4"></div> 
+                      <button (click)="retakeQuiz()" mat-raised-button type="button" class="btn btn-info col-md-4">Retake Quiz</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+          </div>
+          <div class="row">
+            <div class="col-md-2"></div>
+                <div class="col-md-8" >
+                  <div class="card card-body" style="top: 10px;">
+                    <div class="card-header-info" style="margin-top: 0px;font-size: 20px;">
+                        <p>"A Need for Cognition is a scientific measure of intellectual curiosity"</p>
+                    </div>
+                  </div>
+                  <div class="card card-body" style="top: 10px;">
+                    <div class="card-header-info" style="margin-top: 0px;">
+                      <p>If you want to learn more about curiosity, watch this video on curiosity: </p>
+                      <a style="color: #fff;" href="https://cognizant.kpoint.com/app/video/gcc-97aed9ce-83e4-4e94-8fb2-4a362fa2e64c?search=mcnulty&score=6&rank=7&vsrc=search">https://cognizant.kpoint.com/app/video/gcc-97aed9ce-83e4-4e94-8fb2-4a362fa2e64c?search=mcnulty&score=6&rank=7&vsrc=search</a>
+                  
+                    </div>
+                  </div>
+                </div>
+            </div>
+  </div>
+  
+</div>
+
+<div *ngIf="!questionsAreHidden">
+  <form [formGroup]="saveCuriousResponse">
+    <div formArrayName="questionaire">
+    <ng-container *ngFor="let question of saveCuriousResponse.get('questionaire').controls; index as i"  >
+
+        <div class="main-content" [hidden]="questions[i].isHidden">
+          <div class="container-fluid">
+              <div class="row">
+          
+                  <div class="col-md-12" *ngIf ="i==0">
+                      <div class="card " style="top: 20px;">
+                        <div class="card-header card-header-info col-md-5" style="margin-bottom: 50px;" >
+                          <h2 class="card-title">Curiosity Quiz</h2> 
+                        </div>
+                        <div class="card-body">
+                          <div class="row">
+                            <div class="col-md-10">
+                              <h3>{{questions[i].question}}</h3>
+                              <button mat-raised-button class="btn btn-info" (click)="onSubmit(saveCuriousResponse,i)">Take Curiousity Test</button>
+                            </div>
+                            <div class="col-md-2">
+                              <img style="float: right;height: 300px;" src="/assets/img/curious.png"/>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                  </div>
+                  <div class="col-md-12" *ngIf = "i>0">
+                      <div class="card"  style="top: 20px;">
+                        <div class="card-header card-header-info col-md-5" style="margin-bottom: 50px;" >
+                          <h2 class="card-title">Curiosity Quiz</h2> 
+                        </div>
+                          <div class="card-header card-header-info col-md-3" style="margin-left: 75px;" >
+                              <h3>Question {{i}}/{{questions.length-1}}</h3> 
+                          </div>
+                          <div class="card-body">
+                                  <div class="row">
+                                  
+                                  <div class="col-md-12">
+                                    <div class="col-md-12 question">
+                                      {{questions[i].question}}
+                                    </div>                
+                                      <div class="col-md-12" >
+                                          <mat-radio-group aria-label="Select an option" [formControlName]="i"  class="pull-right">
+                                            <mat-radio-button [checked]="questions[i].yes" [value]="true" >True</mat-radio-button>
+                                            <mat-radio-button [checked]="questions[i].no"  [value]="false">False</mat-radio-button>
+                                          </mat-radio-group>
+                                      </div>  
+                                  </div>                                                         
+                                  </div>
+                                  <button *ngIf="i > 1" (click)="goPrevious(saveCuriousResponse,i)" mat-raised-button type="button" class="btn btn-info pull-left">Back</button><button mat-raised-button type="button" (click)="onSubmit(saveCuriousResponse,i)"  class="btn btn-info pull-right">Next</button>
+                                  <div class="clearfix"></div>
+                          </div>
+                      </div>
+                  </div>
+                  <div class="col-md-1"></div>
+              </div>
+          </div>
+        </div>
+    </ng-container>
+  </div>
+  </form>
+</div>
+

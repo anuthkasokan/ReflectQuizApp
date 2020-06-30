@@ -1,0 +1,261 @@
+
+<div class="main-content">
+
+  <div class="container-fluid">
+    <div class="row">
+
+        <div class="col-md-12">
+            <div class="card" >
+                <div class="card-header card-header-info col-md-4">
+                    <h2 class="card-title">Settings</h2>
+                    <p class="card-category">Edit feedback/Email template</p>
+                </div>
+                <div class="col-md-12" style="top:12px;margin-left: 14px;">
+                  <div class="row">
+                    <div class="col-md-1 col-sm-1"></div>
+                    <div >
+                      <a mat-raised-button href="../../assets/files/quiz_template.xlsx" class="btn btn-info pull-right">Download Sample Sheet</a>
+                    </div>
+
+                  </div>
+                  <br />
+                  <div class="row">
+                    <div class="col-md-1 col-sm-1"></div>
+                    <div class="col-md-2 col-sm-4" style="margin-left: -7px;">
+                      <app-material-file-upload [ddarea]="showDdArea"  (complete)="onFileComplete($event)"></app-material-file-upload>
+                    </div>
+                    <div class="row col-sm-7" style="margin-left: 5px;">
+                      <div class="col-sm-4"></div>
+                      <div class="col-md-12 col-sm-8">
+                        <span style="font-size: x-large;" >Upload/</span>
+                        <br />
+                        <span style="font-size: x-large;" >Download Quiz</span>
+                      </div>
+                      <br />
+                    </div>
+                    
+                  </div>
+                </div>
+                <div>
+                  
+                <div class="card-body" style="top:-20px;">
+                  <div class="overlay" *ngIf="!showSettings">
+                    <div class="center">
+                      <mat-spinner style="margin:0 auto;"></mat-spinner>
+                    </div>
+                  </div>
+                    <form [formGroup]="saveSettingsResponse">
+                        <div class="row">
+                          <div class="col-md-4"></div>
+                            <div class="col-md-4">
+                              <mat-form-field class="ca80">
+                                <mat-select placeholder="Select type"  (selectionChange)="onTypeChange($event)" id="type" formControlName ="type">
+                                  <mat-option value="feedback" selected>Feedback</mat-option>
+                                  <mat-option value="email">Email</mat-option>
+                                </mat-select>
+                              </mat-form-field>
+                            </div>
+                           
+                              <span class = "col-md-1" style="margin-top: 18px;float:right;">Max Adjectives</span>
+                              <mat-form-field class="ca80 col-md-1">
+                               <input type="number" matInput placeholder="" [value]="adjectiveCount" formControlName="adjectiveCount">
+                              </mat-form-field>
+                            
+                              <span class = "col-md-1" style="margin-top: 18px;">Max CoWorker</span>
+                              <mat-form-field class="ca80 col-md-1">
+                               <input type="number" matInput placeholder="" [value]="coWorkerCount" formControlName="coWorkerCount">
+                              </mat-form-field>
+           
+                         </div>
+
+
+                      <div *ngIf="showEmail">
+                        <div class="row">
+                          <div class="col-md-5">
+                            <mat-form-field class="ca80">
+                              <mat-select  (selectionChange)="onTemplateChange($event)" placeholder="Select type.." formControlName="template" id="template" >
+                                <mat-option *ngFor="let template of templateList" [value]="template"> {{template}}</mat-option>
+                              </mat-select>
+                            </mat-form-field>
+                          </div>
+                          <div class="col-md-2">
+                            <button mat-raised-button type="button" (click)="AddTemplate()"  class="btn btn-info">Add</button>
+                          </div>
+                       </div>
+                       <br />
+                       <br />
+                       <div class="row">
+                        <div class="col-md-5" *ngIf="ShowAddTemplate">
+                          <mat-form-field class="ca80">
+                            <input matInput placeholder="Template for" formControlName="addtemplate">
+                          </mat-form-field>
+                        </div>
+                        </div>
+                        <div class="row" *ngIf="showTemplate">
+                        <div class="col-md-2"></div>
+                        <div class="col-md-8" style="border: 1px solid #0bb4c9;">
+                          <br />
+                          <label>Email Subject:</label>
+                          <div id="subject" contentEditable='true' class="emailheader">
+                            {{emailTemplate.subject}}
+                          </div>
+                          <br />
+                          <label>Email Header:</label>
+                          <div id="header" contentEditable='true' class="emailheader">
+                            {{emailTemplate.headerprefix}}
+                          </div>
+                          <br />
+                          <label>Email Body:</label>
+                          <div id="body" contentEditable='true' class="emailbody">
+                            {{emailTemplate.body}}
+                          </div>
+                          <br />
+                          <label>Email Footer:</label>
+                          <div id="footer" contentEditable='true' class="emailfooter">
+                            {{emailTemplate.footer}}
+                          </div>
+
+                        </div>
+                        <div class="col-md-2"></div>
+                        <div class="col-md-5"></div>
+                        <div class="col-md-2">
+                          <button mat-raised-button type="button" (click)="saveTemplate(saveSettingsResponse)"  class="btn btn-info">Save</button>
+                        </div>
+                        </div>
+
+                      </div>
+   
+                        <div *ngIf="showFeedback">
+                          <ng-container formArrayName="feedbacks">
+                            <mat-table #table class="table table-bordered table-sm example-container" [dataSource]="datasource">
+                              <mat-header-row *matHeaderRowDef="cols" style="z-index: 0 !important;"></mat-header-row>
+                              <mat-row *matRowDef="let row; columns: cols;"></mat-row>
+
+                              <ng-container matColumnDef="Employee">
+                                <mat-header-cell *matHeaderCellDef  class="col-md-3"><h4><b> Employee</b></h4></mat-header-cell>
+                                <mat-cell *matCellDef="let element; let index = index" [formGroupName]="index"  class="col-md-3">
+                                  <mat-form-field style=" width: 100%;">
+                                    <input type="text" matInput placeholder="Employee" formControlName="userid" [matAutocomplete]="auto" maxlength="50">
+                                  </mat-form-field>
+                                  
+                                  <mat-autocomplete #auto="matAutocomplete">
+                                    <mat-option *ngFor="let user of users" [value]="user.userid">{{user.userid}}</mat-option>
+                                  </mat-autocomplete>
+                                </mat-cell>
+                              </ng-container>  
+                              
+                              <ng-container matColumnDef="Question" >
+                                <mat-header-cell *matHeaderCellDef class="col-md-6"> <h4><b>Question</b></h4></mat-header-cell>
+
+                                <mat-cell *matCellDef="let element; let index = index" [formGroupName]="index" class="col-md-6">
+                                  <mat-form-field style=" width: 100%;">     
+                                    <textarea matInput placeholder="Feedback question" formControlName="question" width="100%" maxlength="200"></textarea>
+                                  </mat-form-field>
+                                </mat-cell>
+                              </ng-container>   
+
+                              <ng-container matColumnDef="Assigned" >
+                                  <mat-header-cell *matHeaderCellDef class="col-md-2"> <h4><b>Assigned</b></h4></mat-header-cell>
+
+                                  <mat-cell *matCellDef="let element; let index = index" [formGroupName]="index" class="col-md-2">
+                                    <mat-form-field style=" width: 100%;">
+                                      <input type="text" matInput placeholder="Assign" formControlName="assigned" [matAutocomplete]="auto" maxlength="50">
+                                    </mat-form-field>
+                                    
+                                    <mat-autocomplete #auto="matAutocomplete">
+                                      <mat-option *ngFor="let user of users" [value]="user.userid">{{user.userid}}</mat-option>
+                                    </mat-autocomplete>
+                                  </mat-cell>
+                              </ng-container>
+                              <ng-container matColumnDef="Action" >
+                                <mat-header-cell *matHeaderCellDef class="col-md-1"> <h4></h4></mat-header-cell>
+
+                                <mat-cell *matCellDef="let element; let index = index" [formGroupName]="index" class="col-md-1">
+                                  <!-- <mat-form-field style=" width: 100%;">      -->
+                                    <a href="javascript:void(0)" (click)="deleteFeedback(index)"><span class="material-icons">
+                                      delete
+                                      </span></a>
+                                  <!-- </mat-form-field> -->
+                                </mat-cell>
+                              </ng-container>  
+ 
+        
+
+                            </mat-table>
+
+                          </ng-container>
+
+                          <div class="row">
+                            <div class="col-md-4"></div>
+                            <div class="col-md-2 col-sm-6">
+                              <button mat-raised-button type="button" (click)="addFeedback()"  class="btn btn-info">Add</button>
+                            </div>
+                            <div class="col-md-2 col-sm-6">
+                              <button mat-raised-button type="button" (click)="saveFeedbacks(saveSettingsResponse)"  class="btn btn-info">Save</button>
+
+                            </div>
+                            <div class="col-md-5"></div>
+                          </div>
+                        </div>
+                      </form>
+                 </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- <div class="row">
+      <div class="col-md-1"></div>
+            <div class="col-md-10">
+                <div class="card">
+                    <div class="card-header card-header-info">
+                        <h4 class="card-title">Upload Questions</h4>
+                        <p class="card-title">Upload/Download Excel Data</p>
+                    </div>
+                    <div class="card-body">
+                            <div class="row">
+                            <div class="col-md-12"> <p>For uploading/downloading excel sheets please do the following:</p></div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-8"> <p>1. Download the sample sheet</p></div>
+                                <div class="col-md-4">
+                                    <a mat-raised-button href="../../assets/files/sample_performance_file.xlsx" class="btn btn-primary fa-pull-right">Download Sample Sheet</a>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-8"> <p>2. Fill the data in the sheet</p></div>       
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-8"> <p>3. Drag and drop on the space below</p></div>
+                            </div>
+<br />
+                            <div class="row">
+                                <hr>
+                                <div [fileUploadInputFor]="fileUploadQueue" class="col-md-12 upload-drop-zone">
+                                    Just drag and drop files here
+                                </div>
+                                    <hr>
+                                    <div class="col-md-2"></div>
+                                <div class="col-md-8">
+                                    <mat-file-upload-queue #fileUploadQueue
+                                        [fileAlias]="'file'"
+                                        [httpUrl]="'#'"  multiple>
+                                    
+                                        <mat-file-upload [file]="file" [id]="i" *ngFor="let file of fileUploadQueue.files; let i = index"></mat-file-upload>
+                                    </mat-file-upload-queue>
+                                </div>
+                                <div class="col-md-2"></div>
+                            </div>
+                            <div class="clearfix"></div>
+
+                    </div>
+                </div>
+            </div>
+               
+        </div> -->
+
+  </div>
+  </div>
+</div>

@@ -1,0 +1,24 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: reflectappui-deployment
+  namespace: cognizantreflect
+spec:
+  selector:
+    matchLabels:
+      app: reflectappui-pod
+  template:
+    metadata:
+      labels:
+        app: reflectappui-pod
+    spec:
+      nodeName: aks-agentpool-21451765-vmss000001
+      containers:
+      - name: reflectappui-container
+        image: reflectcontainerregistry.azurecr.io/reflectappui:latest
+        resources:
+          limits:
+            memory: "256Mi"
+            cpu: "128m"
+        ports:
+        - containerPort: 80

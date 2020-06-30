@@ -1,0 +1,114 @@
+    <div class="main-content" *ngIf ="showScore">
+      <div class="container-fluid" >
+          <div class="row">
+            <div class="col-md-2"></div>
+            <div class="col-md-8" >
+              <div class="card " style="top: 50px;">
+                <div class="card-body">
+                  <div class="row">
+                    
+                    <div class="col-md-6">
+                      <div class="row">
+                        <div class="col-md-12" >
+                          <span style="color: #328dff; font-size: xxx-large; top: 20px;">Your Total Score:</span>
+                        </div>
+                          
+                          <div class="col-md-12 row" style="font-size: 100px;top: 100px;">
+                            <span  class="col-md-12">{{finalScore}}</span>
+                          </div>
+                      </div>
+                    </div>
+                    <div class="col-md-6">
+                      <img style="float: right;height: 300px;" src="/assets/img/showScore.png"/>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-2"></div>
+                <div class="col-md-8" >
+                  <div class="card " style="top: 10px;">
+                    <div class="card-body">
+                      <p *ngIf="score > 40" class="card-header-info" style="margin-top: 0px;font-size: 20px;">You manager your time very effectively.  Keep up the good work and seek out opportunities to coach others in time management</p>
+                      <p *ngIf="score > 20 && score < 41" class="card-header-info" style="margin-top: 0px;font-size: 20px;">You are good at managing some of your tasks and projects, but there is room for improvement.  Take a look at your responses and see where you can improve</p>
+                      <p *ngIf="score < 21" class="card-header-info" style="margin-top: 0px;font-size: 20px;">Now is the time to examine how you work and manage your time.  It is worth is to take courses or buy a book on time management.  Seek out a mentor or coach</p>
+
+                    </div>
+                    <div class="card-body">
+                      <div class="row">
+                          <div class="col-md-2"></div> 
+                        <div class="col-md-3"><button  (click)="checkResponseBack()" mat-raised-button type="button" class="btn btn-info ">Check Your Response</button></div> 
+                        <div class="col-md-2"></div> 
+                        <div class=" col-md-3"><button (click)="retakeQuiz()" mat-raised-button type="button" class="btn btn-info ">Retake Quiz</button></div> 
+                      </div>
+                    </div>
+                  </div>
+                </div>
+            </div>
+            <div class="row">
+              <div class="col-md-2"></div>
+                  <div class="col-md-8" >
+                    <div class="card card-body" style="top: 10px;">
+                      <div class="card-header-info" style="margin-top: 0px;">
+                        <p>To learn tips about time management go to this site: </p>
+                        <a style="color: #fff;" href="https://cognizant.kpoint.com/app/video/gcc-c9a35be6-e671-4ec8-a22c-8f7dd31ff997?search=time%20management&score=35335.797&rank=2&vsrc=search">https://cognizant.kpoint.com/app/video/gcc-c9a35be6-e671-4ec8-a22c-8f7dd31ff997?search=time%20management&score=35335.797&rank=2&vsrc=search</a>
+                      </div>
+                    </div>
+                  </div>
+              </div>
+            </div>      
+      </div>
+      
+<div *ngIf="!questionsAreHidden">
+  <form [formGroup]="saveMakeTimeForMeResponse">
+    <div formArrayName="questionaire">
+    <ng-container *ngFor="let question of questions; index as i"  >
+
+        <div class="main-content" [hidden]="questions[i].isHidden">
+          <div class="container-fluid">
+              <div class="row">
+              
+                  <div class="col-md-12" >
+                      <div class="card"  style="top: 20px;">
+                        <div class="card-header card-header-info col-md-5" style="margin-bottom: 50px;" >
+                          <h2 class="card-title">Making Time For Me Quiz</h2> 
+                        </div>
+                          <div class="card-header card-header-info col-md-3" style="margin-left: 75px;">
+                              <h3 class="card-title">Question {{i+1}}/{{questions.length}}</h3> 
+                          </div>
+                          <div class="card-body">
+                                  <div class="row">
+                                  
+                                  <div class="col-md-12">
+                                    <div class="col-md-12 question">
+                                      {{questions[i].question}}
+                                    </div>                
+                                      <div class="col-md-12" >
+                                          <mat-radio-group aria-label="Select an option" [formControlName]="i"  class="pull-right">
+                                            <mat-radio-button [checked]="questions[i].always" [value]="questions[i].scores.always" >always</mat-radio-button>
+                                            <mat-radio-button [checked]="questions[i].often"  [value]="questions[i].scores.often">often</mat-radio-button>
+                                            <mat-radio-button [checked]="questions[i].sometimes"  [value]="questions[i].scores.sometimes">sometimes</mat-radio-button>
+                                            <mat-radio-button [checked]="questions[i].rarely"  [value]="questions[i].scores.rarely">rarely</mat-radio-button>
+                                            <mat-radio-button [checked]="questions[i].never"  [value]="questions[i].scores.never">never</mat-radio-button>
+                            
+
+                                          </mat-radio-group>
+                                      </div>  
+                                  </div>                                                         
+                                  </div>
+                                  <button *ngIf="i > 0" (click)="goPrevious(saveMakeTimeForMeResponse,i)" mat-raised-button type="button" class="btn btn-info pull-left">Back</button><button mat-raised-button type="button" (click)="onSubmit(saveMakeTimeForMeResponse,i)"  class="btn btn-info pull-right">Next</button>
+                                  <div class="clearfix"></div>
+                          </div>
+                      </div>
+                  </div>
+                  <div class="col-md-1"></div>
+              </div>
+          </div>
+        </div>
+    </ng-container>
+  </div>
+  </form>
+</div>
+

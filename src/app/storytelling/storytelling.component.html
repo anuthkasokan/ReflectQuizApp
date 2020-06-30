@@ -1,0 +1,116 @@
+
+<div *ngIf="!questionsAreHidden">
+  <form [formGroup]="saveStoryTellingResponse">
+    <div formArrayName="questionaire">
+    <ng-container *ngFor="let question of saveStoryTellingResponse.get('questionaire').controls; index as i"  >
+
+        <div class="main-content" [hidden]="questions[i].isHidden">
+          <div class="container-fluid">
+              <div class="row">
+              
+                  <div class="col-md-12" *ngIf ="i==0">
+                      <div class="card " style="top: 20px;">
+                        <div class="card-header card-header-info col-md-6" >
+                          <h2 class="card-title">Story Telling For Impact</h2> 
+                      </div>
+                        <div class="card-body">
+                          <div class="row">
+                            <div class="col-md-9">
+                              <h4>{{questions[i].question}}</h4>
+                              <button mat-raised-button class="btn btn-info" (click)="goNext(saveStoryTellingResponse,i)">Take StoryTelling Tips Quiz</button>
+                            </div>
+                            <div class="col-md-3">
+                              <img style="float: right;height: 300px;" src="/assets/img/storytelling.png"/>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                  </div>
+                  <div class="col-md-12" *ngIf = "i>0">
+                      <div class="card"  style="top: 20px;">
+                        <div class="card-header card-header-info col-md-5" style="margin-bottom: 50px;" >
+                          <h2 class="card-title">Story Telling For Impact</h2> 
+                        </div>
+                          <div class="card-header card-header-info col-md-3" style="margin-left:75px" >
+                              <h2 class="card-title">Question {{i}}/{{questions.length-1}}</h2> 
+                          </div>
+                          <div class="card-body">
+                                  <div class="row">
+                                  
+                                  <div class="col-md-12">
+                                    <div class="col-md-12 question">
+                                      {{questions[i].question}}
+                                    </div>                
+                                      <div class="col-md-12" *ngIf="questions[i].type == 'mc2'" style="margin-left: 30px;">
+                                          <mat-radio-group aria-label="Select an option" [formControlName]="i"  class="pull-left">
+                                            <mat-radio-button class="col-md-12" [checked]="questions[i].optionA" [value]="questions[i].options.a">True</mat-radio-button>
+                                            <mat-radio-button class="col-md-12" [checked]="questions[i].optionB" [value]="questions[i].options.b">False</mat-radio-button>
+                                          </mat-radio-group>
+                                      </div>  
+                                      <div class="col-md-12" *ngIf="questions[i].type == 'mc4'" style="margin-left: 30px;">
+                                        <mat-radio-group aria-label="Select an option" [formControlName]="i"  class="pull-left">
+                                          <mat-radio-button class="col-md-12" [checked]="questions[i].optionA" [value]="questions[i].options.a">{{questions[i].options.a}}</mat-radio-button>
+                                          <mat-radio-button class="col-md-12" [checked]="questions[i].optionB" [value]="questions[i].options.b">{{questions[i].options.b}}</mat-radio-button>
+                                          <mat-radio-button class="col-md-12" [checked]="questions[i].optionC" [value]="questions[i].options.c">{{questions[i].options.c}}</mat-radio-button>
+                                          <mat-radio-button class="col-md-12" [checked]="questions[i].optionD" [value]="questions[i].options.d">{{questions[i].options.d}}</mat-radio-button>
+                                        </mat-radio-group>
+                                    </div> 
+                                  </div> 
+                                  <div class="col-md-12" *ngIf="questions[i].showAnswer" style="margin-left: 60px;">
+                                    <br />
+                                    <p><b>Answer:</b> {{questions[i].statement}}</p>
+                                  </div>                                                        
+                                  </div>
+                                  <button *ngIf="i > 1" (click)="goPrevious(saveStoryTellingResponse,i)" mat-raised-button type="button" class="btn btn-info pull-left">Back</button>
+                                  <button mat-raised-button type="button" (click)="goNext(saveStoryTellingResponse,i)"  class="btn btn-info pull-right">Next</button>
+                                
+                                  <button mat-raised-button type="button" (click)="onSubmit(saveStoryTellingResponse,i)"  class="btn btn-info pull-right">Submit</button>
+                                  
+                                  <div class="clearfix"></div>
+                          </div>
+                      </div>
+                  </div>
+                  <div class="col-md-1"></div>
+              </div>
+          </div>
+        </div>
+    </ng-container>
+    </div>
+    <div class="main-content container-fluid" *ngIf="showResult" >
+      <div class="row">
+          <div class="col-md-2"></div>
+              <div class="col-md-8" >
+                <div class="card ">
+                  <div class="card-body">
+                    <p style="margin-top: 0px;font-size: 20px;"><b>Here are the correct statements about Storytelling for Impact:</b></p>
+                    <p style="margin-top: 0px;font-size: 20px;">1.	Tell the truth.</p>
+                    <p style="margin-top: 0px;font-size: 20px;">2.	Select true stories about a topic that you experienced, someone else did or a combination.</p>
+                    <p style="margin-top: 0px;font-size: 20px;">3.	It should be 30 to 90 seconds long.</p>
+                    <p style="margin-top: 0px;font-size: 20px;">4.	Tell several short stories instead of long ones.</p>
+                    <p style="margin-top: 0px;font-size: 20px;">5.	A story activates 7 parts of a brain.</p>
+                    <p style="margin-top: 0px;font-size: 20px;">6.	You can feel, taste and smell based on hearing a story.</p>
+                    <p style="margin-top: 0px;font-size: 20px;">7.	Our brain is activated by one half for language processing and one half for language comprehension.</p>
+                    <p style="margin-top: 0px;font-size: 20px;">8.	A good story leads to more emotions to the listener and makes the points more memorable.</p>
+                    <p style="margin-top: 0px;font-size: 20px;">9.	A good story helps the listener to generate oxytocin, which builds trust in others.</p>
+                    <p style="margin-top: 0px;font-size: 20px;">10.	Story telling in business is not about science fiction or fantasy stories.</p>
+                    <p style="margin-top: 0px;font-size: 20px;">11.	There is no set number of stories to tell.</p>
+                    <p style="margin-top: 0px;font-size: 20px;">12.	A good time to tell a short story is before you present your point of view to influence others.</p>
+                    <p style="margin-top: 0px;font-size: 20px;">13.	The other appropriate time to tell a story in to reinforce a logical point.</p>
+                    <p style="margin-top: 0px;font-size: 20px;">14.	A good story can lead to an importance comment from a listener.</p>
+                    <p style="margin-top: 0px;font-size: 20px;">15.	A good story can prevent potential disagreements with other.</p>
+
+                  </div>
+                  <div class="card-body">
+                    <div class="row">
+                      <div class="col-md-4"></div> 
+                      <button (click)="retakeQuiz()" mat-raised-button type="button" class="btn btn-info col-md-4">Retake Quiz</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+          </div>
+
+  </div>
+  </form>
+</div>
+

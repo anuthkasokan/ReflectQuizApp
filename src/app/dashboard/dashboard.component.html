@@ -1,0 +1,335 @@
+<div class="main-content">
+  <div class="container-fluid">
+    <div class="row" *ngIf="showForAdmin">
+        <div class=""></div>
+        <div class="col-lg-4 col-md-2 col-md-2">
+      
+            <mat-form-field>
+                <input type="text" matInput placeholder="Select User" class="form-control" [matAutocomplete]="auto" (blur)="resetDashboard($event)">
+              </mat-form-field>
+              
+              <mat-autocomplete #auto="matAutocomplete" (optionSelected)="filterDashboard($event)">
+                <mat-option *ngFor="let user of users" [value]="user.userid">{{user.userid}}</mat-option>
+              </mat-autocomplete>
+                
+        </div>
+        <div class="col-lg-2"></div>
+      </div><br />
+      <div class="overlay " *ngIf="!showDashboard">
+        <div class="center">
+          <mat-spinner style="margin:0 auto;" class="custom-spinner"></mat-spinner>
+        </div>
+      </div>
+      <div class="row">
+         <div class="col-lg-3 col-md-6 col-sm-6">
+              <div class="card card-stats">
+                  <div class="card-header card-header-primary card-header-icon">
+                      <div class="card-icon">
+                          <i class="material-icons md-48" >voicemail</i>
+                      </div>
+                      <p class="card-top">Curiosity Quiz Attempts</p>
+                      <h3 class="card-title">{{curiosityAttempts}}
+                         
+                      </h3>
+                  </div>
+                  <div class="card-footer">
+                      <div class="stats">
+                          <i class="material-icons text-right">keyboard_capslock</i>
+                          <p>Get More Curious...</p>
+                      </div>
+                  </div>
+              </div>
+          </div>
+     
+          <div class="col-lg-3 col-md-6 col-sm-6">
+              <div class="card card-stats">
+                  <div class="card-header card-header-primary card-header-icon">
+                      <div class="card-icon">
+                          <i class="material-icons md-48">trending_up</i>
+                      </div>
+                      <p class="card-top">Growth Mindset Quiz Attempts</p>
+                      <h3 class="card-title">{{growthMindsetAttempts}}</h3>
+                  </div>
+                  <div class="card-footer">
+                      <div class="stats">
+                          <i class="material-icons">local_offer</i>
+                          <p>Growth better than fixed..</p> 
+                      </div>
+                  </div>
+              </div>
+          </div>
+         
+          <div class="col-lg-3 col-md-6 col-sm-6">
+              <div class="card card-stats">
+                  <div class="card-header card-header-primary card-header-icon">
+                      <div class="card-icon">
+                          <i class="material-icons md-48" >access_time</i>
+                      </div>
+                      <p class="card-top">Making Time Quiz Attempts</p>
+                      <h3 class="card-title">{{makingTimeAttempts}}</h3>
+                  </div>
+                  <div class="card-footer">
+                      <div class="stats">
+                          <i class="material-icons">watch</i>
+                          <p>Handle time better...</p> 
+                      </div>
+                  </div>
+              </div>
+          </div>
+
+          <div class="col-lg-3 col-md-6 col-sm-6">
+            <div class="card card-stats">
+                <div class="card-header card-header-primary card-header-icon">
+                    <div class="card-icon">
+                        <i class="material-icons md-48" >people</i>
+                    </div>
+                    <p class="card-top">Culture Observation Quiz Attempts</p>
+                    <h3 class="card-title">{{cultureObservationAttempts}}</h3>
+                </div>
+                <div class="card-footer">
+                    <div class="stats">
+                        <i class="material-icons">people</i>
+                        <p>Understand office culture...</p> 
+                    </div>
+                </div>
+            </div>
+        </div>
+
+      </div>
+      <div class="row">
+          <div class="col-md-6">
+              <div class="card card-chart">
+                  <div class="card-header card-header-primary">
+                      <div class="ct-chart" id="scoreChart"></div>
+                  </div>
+                  <div class="card-body" style="height: 189px;">
+                      <h4 class="card-title">Quiz Score Card</h4>
+                      <div  *ngFor="let average of quizAttempts;">
+                        <p *ngIf="average.incScore" class="card-category">
+                            <span class="text-success"><i class="fa fa-long-arrow-up"></i>{{average.percent}}% </span> increase in {{average.quiz}}.</p>
+                        <p *ngIf="!average.incScore" class="card-category">
+                            <span class="text-danger"><i class="fa fa-long-arrow-down"></i>{{average.percent}}% </span> decrease in {{average.quiz}}.</p>
+                      </div>   
+                  </div>
+                  <div class="card-footer">
+                      <div class="stats">
+                          <i class="material-icons">refresh</i> Refresh page to get latest
+                      </div>
+                  </div>
+              </div>
+          </div>
+          <div class="col-md-6">
+            <div class="row">
+             <div class="col-md-1"></div>
+              <div class="col-md-10">
+                <span class="progress">{{current}}%</span>
+                <round-progress
+                [current]="current"
+                [max]="max"
+                [color]="'#0033a0'"
+                [background]="'#fff'"
+                [radius]="150"
+                [stroke]="25"
+                [semicircle]="false"
+                [rounded]="true"
+                [clockwise]="true"
+                [responsive]="false"
+                [duration]="800"
+                [animation]="'easeInOutQuart'"
+                [animationDelay]="1"
+                style="width: 320px;
+                height: 320px;
+               margin-left: 115px;
+               top:10px;
+                "
+                ></round-progress>
+                <div class="card">
+                 <div class="card-body">
+                  <div class="row">
+                     <div class="col-md-3 col-sm-3" style="margin-left: -12px;"></div>
+                  
+                    <h3>Percentage of Completion %</h3>
+                  </div>
+                 </div>
+                </div>
+              </div>
+             </div>
+          </div>
+      </div>
+      <div class ="row">
+        <div class="col-md-6" [hidden]="hideDoughnut">
+            <div class="card card-chart">
+                <div class="card-header card-header-blank">
+                    <div class="ct-chart" >
+                      <canvas mdbChart
+                      [chartType]="attemptChartType"
+                      [datasets]="attemptChartDatasets"
+                      [labels]="attemptChartLabels"
+                      [colors]="attemptChartColors"
+                      [options]="attemptChartOptions"
+                      [legend]="true"
+                      (chartHover)="attemptChartClicked($event)"
+                      (chartClick)="attemptChartClicked($event)" height="150px">
+                  </canvas>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <h4 class="card-title">Attempt History</h4>
+                    <p class="card-category">Attempt counts of quizes</p>
+                </div>
+                <div class="card-footer">
+                    <div class="stats">
+                        <i class="material-icons">refresh</i> Refresh page to get latest
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-6" [hidden]="hideDoughnut">
+            <div class="card card-chart">
+                <div class="card-header card-header-blank">
+                    <div class="ct-chart" >
+                        <canvas mdbChart
+                        [chartType]="claChartType"
+                        [datasets]="claChartDatasets"
+                        [labels]="claChartLabels"
+                        [colors]="claChartColors"
+                        [options]="claChartOptions"
+                        [legend]="true"
+                        (chartHover)="claChartClicked($event)"
+                        (chartClick)="claChartClicked($event)" height="150px">
+                    </canvas>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <h4 class="card-title">Continuous Learning Assessment</h4>
+                    <p class="card-category">Continuous learning quiz answer counts</p>
+                </div>
+                <div class="card-footer">
+                    <div class="stats">
+                        <i class="material-icons">refresh</i> Refresh page to get latest
+                    </div>
+                </div>
+            </div>
+        </div>
+      </div>
+      <div class="row">
+          <div class="col-lg-6 col-md-12">
+              <div class="card">
+                  <div class="card-header card-header-tabs card-header-info">
+                      <div class="nav-tabs-navigation">
+                          <div class="nav-tabs-wrapper">
+                              <span class="nav-tabs-title">Quiz:</span>
+                              <ul class="nav nav-tabs" data-tabs="tabs">
+                                  <li class="nav-item">
+                                      <a mat-button class="nav-link active" href="#profile" data-toggle="tab">
+                                          <i class="material-icons">voicemail</i> Curiosity
+                                          <div class="ripple-container"></div>
+                                      </a>
+                                  </li>
+                                  <li class="nav-item">
+                                      <a mat-button class="nav-link" href="#messages" data-toggle="tab">
+                                          <i class="material-icons">trending_up</i> Growth Mindset
+                                          <div class="ripple-container"></div>
+                                      </a>
+                                  </li>
+                                  <li class="nav-item">
+                                      <a mat-button class="nav-link" href="#settings" data-toggle="tab">
+                                          <i class="material-icons">access_time</i> Making Time For Me
+                                          <div class="ripple-container"></div>
+                                      </a>
+                                  </li>
+                              </ul>
+                          </div>
+                      </div>
+                  </div>
+                  <div class="card-body" style="overflow: auto; height: 275px;">
+                      <div class="tab-content">
+                          <div class="tab-pane active" id="profile">
+                              <table class="table">
+                                  <tbody>
+                                      <tr *ngFor="let result of curiosityAnswers; let index=index">
+                                          <td>
+                                              <div class="form-check">
+                                                  <label class="form-check-label">
+                                                    <i class="material-icons">filter_{{index+1}}</i>
+                                                  </label>
+                                              </div>
+                                          </td>
+                                          <td>{{result.statement}}</td>
+                                          <td class="td-actions text-right">
+                                            <h4>{{result.times}}</h4>
+                                          </td>
+                                      </tr>
+                                  </tbody>
+                              </table>
+                          </div>
+                          <div class="tab-pane" id="messages">
+                              <table class="table">
+                                  <tbody>
+                                    <tr *ngFor="let result of GrowthMindsetAnswers; let index=index">
+                                        <td>
+                                            <div class="form-check">
+                                                <label class="form-check-label">
+                                                  <i class="material-icons">filter_{{index+1}}</i>
+                                                </label>
+                                            </div>
+                                        </td>
+                                        <td>{{result.statement}}</td>
+                                        <td class="td-actions text-right">
+                                          <h4>{{result.times}}</h4>
+                                        </td>
+                                    </tr>
+                                  </tbody>
+                              </table>
+                          </div>
+                          <div class="tab-pane" id="settings">
+                              <table class="table">
+                                  <tbody>
+                                    <tr *ngFor="let result of MakeTimeAnswers; let index=index">
+                                        <td>
+                                            <div class="form-check">
+                                                <label class="form-check-label">
+                                                  <i class="material-icons">filter_{{index+1}}</i>
+                                                </label>
+                                            </div>
+                                        </td>
+                                        <td>{{result.statement}}</td>
+                                        <td class="td-actions text-right">
+                                          <h4>{{result.times}}</h4>
+                                        </td>
+                                    </tr>
+                                  </tbody>
+                              </table>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+          </div>
+          <div class="col-lg-6 col-md-12">
+              <div class="card">
+                  <div class="card-header card-header-info" style="height: 74px;">
+                      <h4 class="card-title" style="margin-top: 10px;">Admin Comments</h4>
+                      
+                  </div>
+                  <div class="card-body table-responsive" style="overflow: auto; height: 275px;">
+                      <table class="table table-hover">
+                          <thead class="text-warning">
+                              <th>ID</th>
+                              <th>Comment</th>
+                              <th>Date</th>
+                          </thead>
+                          <tbody>
+                              <tr *ngFor="let comment of AdminComments; let index=index">
+                                  <td>{{index+1}}</td>
+                                  <td>{{comment.question}}</td>
+                                  <td>{{comment.createtimestamp}}</td>
+                              </tr>
+                          </tbody>
+                      </table>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </div>
+</div>

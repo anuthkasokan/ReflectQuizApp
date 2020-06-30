@@ -1,0 +1,63 @@
+
+
+<form [formGroup]="saveReflectionToolResponse" *ngIf="showReflection">
+ 
+  <ng-container >
+
+      <div class="main-content">
+        <div class="container-fluid">
+            <div class="row">
+              
+                <div class="col-md-12">
+                    <div class="card " style="top: 20px;">
+                      <div class="card-header card-header-info col-md-4" >
+                        <h2 class="card-title">Reflection Tool</h2> 
+                      </div>
+                      <div formArrayName="questionaire">
+                        <div class="card-body"  *ngFor="let question of questions; index as i" >
+                                <div class="row">
+                                
+                                 <div class="col-md-12">
+                                  <div class="col-md-12">
+                                   <h4>{{i+1}}. {{questions[i].question}}</h4>
+                                  </div>                
+                                    <div class="col-md-12" *ngIf="questions[i].type == 'mc3'">
+                                        <mat-radio-group aria-label="Select an option" [formControlName]="i"  class="pull-left">
+                                          <mat-radio-button class="col-md-12" [checked]="questions[i].agree" value="agree">Agree</mat-radio-button>
+                                          <mat-radio-button class="col-md-12" [checked]="questions[i].neutral" value="neutral">Neutral</mat-radio-button>
+                                          <mat-radio-button class="col-md-12" [checked]="questions[i].disagree" value="disagree">Disagree</mat-radio-button>
+                                        </mat-radio-group>
+                                    </div>  
+                                    <div class="col-md-12" *ngIf="questions[i].type == 'select'">
+                                      <mat-form-field class="ca80">
+                                        <mat-select  multiple [formControlName]="i" (selectionChange)="changed(saveReflectionToolResponse,i)" class="col-md-6" >
+                                          <mat-option [disabled]="disableOption"  *ngFor="let option of questions[i].options" [value]="option"> {{option}}</mat-option>
+                                        </mat-select>
+                                      </mat-form-field>
+                                  </div> 
+                                  <div class="col-md-12" *ngIf="questions[i].type == 'text'">
+                                    <mat-form-field class="example-full-width" > 
+                                      <input type="text" matInput placeholder="Your response" [formControlName]="i" />
+                                    </mat-form-field>
+                                  </div>
+                                 </div>                                                        
+                                </div>
+                                
+                                <div class="clearfix"></div>
+                        </div>
+                      </div>
+                      <div class="card-body row">
+                        <div class="col-md-5"></div>
+                        <button mat-raised-button type="button" (click)="onSubmit(saveReflectionToolResponse)"  class="btn btn-info col-md-2">Save</button>
+                      <div class="col-md-5"></div> 
+                    </div> 
+                   </div>
+                   <div class="col-md-1"></div>
+                </div>
+        </div>
+      </div>
+    </div>
+  </ng-container>
+
+</form>
+

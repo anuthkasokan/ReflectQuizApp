@@ -1,0 +1,171 @@
+
+          <div class="overlay " *ngIf="!showBlindspot">
+            <div class="center">
+              <mat-spinner style="margin:0 auto;" class="custom-spinner"></mat-spinner>
+            </div>
+          </div>
+    <div class="main-content" *ngIf="showQuestions">
+  
+      <div class="row">
+      
+        <div class="col-md-12">
+          <div class="container-fluid">
+            <div class="">
+            
+              <div class=" card" style="top: 20px;">
+                <div class=" card-header-info col-md-4">
+                  <h2>Blind Spot Quiz</h2>
+                </div>
+                <div class="card-body">
+                <h4>A Johari window is a self-awareness tool created by Luft and Ingham in 1950’s. It’s a simple and useful tool for better understanding of yourself and what areas you m ay need more training in.</h4>  
+                <h4>1.	Self-awareness – a top meta skill for 2020 according to LinkedIn</h4>
+                <h4>2.	Personal development </h4>
+                <h4>3.	Improved communication skills </h4>
+                <h4>4.	Interpersonal relationships </h4>
+                <h4>5.	Group dynamics </h4>
+                <h4>6.	Team development</h4>
+                <h4>7.	Effective professional relationships </h4>
+                <h4> It’s a tool to use on a regular basis because of its simplicity and its versatility. To learn more, watch this short video: </h4>
+                <h4> Display the below as reference link in Blind Spot Quiz Page </h4>
+                <h4> Self Awareness – <a href="https://cognizant.kpoint.com/app/video/gcc-ad77a0e3-b6af-48d3-aadb-f6de493899e0?search=mcnulty&score=39&rank=1&vsrc=search">https://cognizant.kpoint.com/app/video/gcc-ad77a0e3-b6af-48d3-aadb-f6de493899e0?search=mcnulty&score=39&rank=1&vsrc=search</a> 
+                  </h4>
+              </div>
+              </div>
+            </div>
+          </div>
+          <div *ngIf="showAdjectives">
+            <form [formGroup]="saveBlindSpotResponse" >
+          <ng-container  >
+              <div>
+                <div class="container-fluid">
+                    <div >
+                        <div class=" card" >
+                            <div class="card-body">
+                              <div class="row">
+                              <div  *ngFor="let question of questions.adjectives" class="col-md-3">
+                            
+                              <button mat-raised-button type="button" [disabled]="disableAdjective"  id="{{question}}" (click)="onClick(question);" [value]="question" class="btn btn-info ">{{question}}</button>
+
+                                    <div class="clearfix"></div>
+                              </div>
+                            </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+              </div>
+          </ng-container>
+          <ng-container >
+            <div>
+              <div class="container-fluid">
+                <div class="">
+
+                <div class="card  col-md-12" >
+                  <div class="row" formArrayName="selectcoworkers" style="top: 10px;">
+                            <div  *ngFor="let worker of saveBlindSpotResponse.get('selectcoworkers').controls; index as i" style="margin-left: 20px;" >
+              <div class="row">
+                                <div class="col-md-12">
+                                  <mat-form-field>
+                                    <input type="text" matInput placeholder="Select CoWorker" [formControlName]="i" [matAutocomplete]="auto">
+                                  </mat-form-field>
+                                  
+                                  <mat-autocomplete #auto="matAutocomplete">
+                                    <mat-option *ngFor="let option of coworkers" [value]="option.userid">{{option.userid}}</mat-option>
+                                  </mat-autocomplete>
+                                </div> 
+                                <div class="col-md-12"></div>
+                              </div>                     
+                            </div>
+                          </div>
+                            <div class="clearfix"></div>
+
+                </div>
+              </div>
+              </div>
+            </div>
+          </ng-container>
+          <div class="row">
+            <div class="col-md-4"></div>
+            <button mat-raised-button type="button" (click)="onSubmit(saveBlindSpotResponse)"  class="btn btn-info col-md-2">Save</button>
+            <button mat-raised-button type="button" (click)="cancel()"  class="btn btn-info col-md-2">Cancel</button>
+            <div class="col-md-4"></div> 
+        </div> 
+          </form>
+        </div>
+        </div>
+      </div>
+
+
+  </div>
+  <div class="main-content" *ngIf="showResult">
+    <div class="container-fluid">
+          <div>
+            <div  class="row">
+              <div class="col-md-6"  style="top: 20px;">
+                <div class="card">
+                <div class="card-header card-header-info col-md-4">
+                  <h4>Arena</h4>
+                </div>
+                <div class="card-body" style="height:350px;word-wrap: break-word;">
+                 <div *ngFor="let option of getResultData.arena; index as i" >
+                   {{i+1}}: {{option}}
+                 </div>
+                </div>
+              </div>
+              </div>
+              <div class="col-md-6"  style="top: 20px;"> 
+                <div class="card">
+                <div class="card-header card-header-success col-md-4">
+                 <h4>BlindSpot</h4> 
+                </div>
+                <div class="card-body" style="height:350px;word-wrap: break-word;">
+                 <div *ngFor="let option of getResultData.blindspot; index as i" >
+                   {{i+1}}: {{option}}
+                 </div>
+                </div>
+                </div>
+              </div>
+            </div>
+            <div class="row" >
+              <div class="col-md-6"   style="top: 20px;">
+                <div class="card">
+                <div class="card-header card-header-primary col-md-4">
+                  <h4>Façade</h4>
+                </div>
+                <div class="card-body" style="height:350px;word-wrap: break-word;">
+                 <div *ngFor="let option of getResultData.facade; index as i" >
+                   {{i+1}}: {{option}}
+                 </div>
+                </div>
+              </div>
+              </div>
+              <div class="col-md-6"  style="top: 20px;">
+                <div class="card">
+                <div class="card-header card-header-blank col-md-4">
+                 <h4>Unknown</h4> 
+                </div>
+                <div class="card-body" style="height:350px;word-wrap: break-word;">
+                 <div *ngFor="let option of getResultData.unknown; index as i" >
+                   {{i+1}}: {{option}}
+                 </div>
+                </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-5"></div>
+            <button mat-raised-button type="button" (click)="retakeQuiz()"  class="btn btn-info col-md-2">Retake Quiz</button>
+          <div class="col-md-5"></div> 
+        </div> 
+      </div>
+    </div>
+ 
+
+
+
+  
+
+
+
+

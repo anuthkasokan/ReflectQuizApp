@@ -1,0 +1,161 @@
+
+    <div class="main-content" *ngIf ="showScore">
+        <div class="container-fluid" >
+            <div class="row">
+              <div class="col-md-2"></div>
+              <div class="col-md-8" >
+                <div class="card " style="top: 50px;">
+                  <div class="card-body">
+                    <div class="row">
+                      
+                      <div class="col-md-6">
+                        <div class="row">
+                          <div class="col-md-12" >
+                            <span style="color: #328dff; font-size: xxx-large; top: 20px;">Your Total Score:</span>
+                          </div>
+                            
+                            <div class="col-md-12 row" style="font-size: 100px;top: 100px;">
+                              <span  class="col-md-12">{{finalScore}}</span>
+                            </div>
+                        </div>
+                      </div>
+                      <div class="col-md-6">
+                        <img style="float: right;height: 300px;" src="/assets/img/showScore.png"/>
+                      </div>
+                    </div>
+
+                    <div class="row">
+                      <div class="col-md-5"></div> 
+                      <div class=" col-md-2"><button (click)="retakeQuiz()" mat-raised-button type="button" class="btn btn-info ">Retake Quiz</button></div> 
+                    </div>
+
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-2"></div>
+                  <div class="col-md-8" >
+                    <div class="card " style="top: 10px;">
+                      <div class="card-body">
+                      <p>If topics that brought out conversations were about learning, growth and improving, then the team has a learning culture. </p>
+                       <p>If members have to know all the answers, the culture is not leaning towards continuous learning.</p> 
+                        <p>If the leader regularly talks about what he/she learned, that is a learning culture. </p>
+                        <p>If team members offer to teach, train or assist others, this is a learning culture </p>
+
+                      </div>
+                    </div>
+                  </div>
+              </div>
+              </div>      
+        </div>
+
+        <div class="main-content" *ngIf ="showIntro">
+            <div class="container-fluid" >
+                <div class="row">
+                  <div class="col-md-2"></div>
+                  <div class="col-md-8" >
+                    <div class="card" style="top: 50px;">
+                      <div class="card-body" style="background-color: #328dff;color: white;">
+                        <div class="row">
+                          <h2 class="col-md-12">Check On Your Team's Culture</h2>
+                          <div style="margin-left: 50px;">
+                            <h4>1. Meeting Observation</h4>
+                            <h4>2. Learning Culture Signals</h4>
+                          </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md 5"></div>
+                            <div class="col-md-2">
+                                <button mat-raised-button type="button" (click)="takeQuiz()"  class="btn btn-warning">Take Quiz</button>
+                            </div>
+
+                        </div>
+                    </div>
+                  </div>
+                </div>
+             </div>      
+            </div>
+        </div>
+
+<form [formGroup]="culturalobservationResponse" *ngIf="showQuestions">
+    <ng-container >
+        <div class="main-content">
+  
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="card " style="top: 20px;">
+                            <div class="card-header card-header-info col-md-5" > 
+                                
+                          <h2 class="card-title">Culture Observation Tool</h2> 
+                         
+                            </div>
+                          <div class="card-body">
+                            <div >
+                                <div formArrayName="questionaire" *ngFor="let question of questions; index as i" >
+                               <br />
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <h4>{{i+1}}. {{questions[i].question}}</h4>
+                                        </div> 
+                                    </div>
+                        
+                                    <div  class="row" [formGroupName]="i">
+                                        <div class="col-md-2" >
+                                            <mat-form-field class="full-width">
+                                            <input matInput [matDatepicker]="picker" placeholder="Date" formControlName="date" class="full-width" required>
+                                            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                                            <mat-datepicker #picker></mat-datepicker>
+                                            </mat-form-field>
+                                        </div>
+                                        <div class="col-md-7" >
+                                            <mat-form-field class="full-width">
+                                                <mat-label>Meeting Title</mat-label>
+                                                <input  matInput  placeholder="Title" formControlName="meetingTitle"  required>
+                                                </mat-form-field>
+                                        </div>
+                                        
+                                        <div class="col-md-3" >
+                                            <mat-form-field  class="full-width">
+                                                <mat-label>Scoring</mat-label>
+                                                <mat-select formControlName="scoring" (click)="selectScore($event)">
+                                                    <mat-option value="Rarely"> Rarely</mat-option>
+                                                    <mat-option  value="Frequently">Frequently</mat-option>
+                                                    <mat-option  value="Some">Some</mat-option>
+                                                    
+                                                </mat-select>
+                                            </mat-form-field>
+                                        </div>
+                                    
+
+                                        <div class="col-md-8" >
+                                            <mat-form-field class="full-width">
+                                                <mat-label>Comment</mat-label>
+                                                <input  matInput  placeholder="Comment"  formControlName="comment" >
+                                            </mat-form-field>
+                                        </div>
+                                        </div>                                            
+                        
+                                </div> 
+                                <div class="card-body row">
+                                    <div class="col-md-5"></div>
+                                    <button mat-raised-button type="button" (click)="onSubmit(culturalobservationResponse)"  class="btn btn-info col-md-2">Save</button>
+                                  <div class="col-md-5"></div> 
+                                </div>
+                            </div>
+                          </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+       
+        </div>
+
+    </ng-container>
+        
+  
+  </form>
+  
+  

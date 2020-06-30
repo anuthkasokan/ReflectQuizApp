@@ -1,0 +1,150 @@
+
+    <div class="main-content">
+    <ng-container>
+      <div >
+        <div class="container-fluid">
+          <div class="row">
+           <div class="col-md-12">
+            <div class="card" style="top: 20px;">
+              <div class="card-header card-header-info col-md-4" >
+                <h2 class="card-title">Productivity Zone</h2> 
+            </div>
+              <div class="card-body">
+                <h4>The Productivity Zone is working at your highest productivity. Procrastination, fixed mindsets and perfectionism are barriers that us from being our most efficient and effective.  
+                  Procrastinators tend to work first on what they want to work on, instead of what should be prioritized first, or get their important tasks done at the last minute.  They may be afraid of being successful or feel they are inadequate. 
+                </h4>
+                <h4>You feel you procrastinate, here are some tips: <button (click)="showTips=false;" mat-raised-button class="btn btn-info">click here</button></h4>
+                <div [hidden]="showTips">
+                  <h4><b>Be more organized</b></h4>
+                    <h4 class="text-muted">Record all tasks that require attention using the tool that works for you best.  I like Sticky Notes on my laptop. Or use your Outlook Calendar to list when you will work on tasks in order of importance</h4>
+                  <h4><b>Begin with simple goals</b></h4>
+                    <h4 class="text-muted">Break down your goals into smaller tasks that you need to do in order to achieve them.  Identify how much time you have to complete the goal, then place to do items in that timeline. Try to set the deadline for a few days before it is due.  This gives you time to review or tweak your work.</h4>             
+                  <h4><b>Do more difficult or complicated work first</b></h4>
+                    <h4 class="text-muted">Once you do the harder work that you might want to push out, guess what, it's completed! After that, the other tasks are easy.</h4>
+                  <h4><b>Eliminate distractions</b></h4>
+                    <h4 class="text-muted">Is your work environment too loud?  Do co-workers come to you to discuss work that is not your highest priority? Try moving to a conference room or adjusting your work hours</h4>
+                  <h4><b>Time check</b></h4>
+                    <h4 class="text-muted">Test how productive you are compared to what you planned.  Adjust if necessary.</h4>
+                  <h4><b>Take a break</b></h4>
+                    <h4 class="text-muted">Studies have shown that adults are more productive and learn better if they take a short break every hour.  This allows the brain to organize your thoughts and evaluate.</h4>
+                  <h4><b>Share your goal with a mentor or co-worker</b></h4>
+                    <h4 class="text-muted">Another person can help motivate you and encourage you to meet your deadlines.  They can celebrate your success, too. </h4>
+                  <h4><b>Perfectionists may think that they are never good enough and may put in more work than is necessary to feel good about their efforts. They may always think they could do more or do better.</b></h4>
+                  <h4>If you are a perfectionist, here are some tips: <button (click)="showPerfection=false;" mat-raised-button class="btn btn-info">click here</button></h4>
+                </div>
+                <div [hidden]="showPerfection">
+                  <h4><b>Set realistic personal goals and expectations.</b></h4>
+                    <h4 class="text-muted">Recognize that you are already an achiever and you don't need to be perfect to continue being successful</h4>
+                  <h4><b>Stop listening to negative self-talk.</b></h4>
+                    <h4 class="text-muted">Use positive feedback to achieve your goals and not a negative inner voice to hurt your emotional wellbeing and self-esteem.</h4>
+                  <h4><b>Prioritize you.</b></h4>
+                    <h4 class="text-muted">Take the time to pursue what you enjoy doing.  Reflect on what makes you happy and do whatever that is more often.</h4>
+                  <h4><b>Saying NO</b></h4>
+                    <h4 class="text-muted">Perfectionists often struggle with saying no to new requests due to ambition or the need to please others. But having boundaries can give you the energy to get things done and work on what matters the most.</h4>
+                  <h4><b>Trust yourself that the project get done on time.</b></h4>
+                    <h4 class="text-muted">You have what it takes to get tasks done. Use that knowledge to increase your confidence. Believe in yourself.</h4>
+                  <h4><b>Schedule breaks and recharge.</b></h4>
+                    <h4 class="text-muted">Just like procrastinators, perfectionists often don’t take the time they need to recharge their batteries.  You will feel better and work more effectively if you take breaks.</h4>
+                  <h4><b>Avoid multitasking.</b></h4>
+                    <h4 class="text-muted">Multitasking drains energy, decreases efficiency, slows your memory, and increases stress.  Work on one task at a time.</h4>
+                  
+                </div>
+                <p><button [hidden]="showTips" (click)="showTips=true;showPerfection=true;" mat-raised-button class="btn btn-info">Hide Tips</button></p>
+              </div>
+            </div>
+           </div>
+          </div>
+        </div>
+      </div>
+    </ng-container>
+
+
+    <form [formGroup]="saveProductivityZoneResponse" >
+      <div >
+        <ng-container>
+          <div class="container-fluid">
+            <div class="row">
+              <div class="col-md-12">
+            <div class="card">
+              <div class="card-body">
+              <h4> We must also think about these factors to help us to be more effective and help us to do our best work using your productivity zones. </h4>
+              <h4> Think about how you work throughout the days :</h4>  
+              </div>
+            </div>
+              </div>
+            </div>
+          </div>
+        </ng-container>
+      <ng-container formArrayName="questionaire" *ngFor="let question of questions; index as i"  >
+         
+            <div class="container-fluid">
+              <div class="row">
+                <div class="col-md-12">
+                    <div class="card" >
+                        <div class="card-body">
+                                <div >
+    
+                                  <div class="col-md-12 question">
+                                  <h4>{{i+1}}:  {{questions[i].question}}</h4>
+                                  </div>                
+                                    <div class="col-md-12" >
+                                      <mat-form-field class="example-full-width" > 
+                                        <input type="text" matInput placeholder="Your response" [formControlName]="i" />
+                                      </mat-form-field>
+
+                                      <!-- <div >
+                                        <label>AfterNoon</label>
+                                          <mat-form-field class="example-full-width">
+                                          <mat-slider thumbLabel [displayWith]="formatLabel" tickInterval="1" min="1" max="10" [formControlName]="i"></mat-slider>
+                                          </mat-form-field>
+                                        <label>Early Evening</label>
+                                          <mat-form-field class="example-full-width">
+                                            <mat-slider thumbLabel [displayWith]="formatLabel"  tickInterval="1" min="1" max="10" formControlName="evening"></mat-slider>
+                                          </mat-form-field>
+                                        <label>Late Evening</label>
+                                          <mat-form-field class="example-full-width">
+                                            <mat-slider thumbLabel [displayWith]="formatLabel" tickInterval="1" min="1" max="10" formControlName="lateevening"></mat-slider>
+                                          </mat-form-field>
+                                      </div> -->
+                                    </div>  
+                                                                
+                                </div>
+
+                                <div class="clearfix"></div>
+                        </div>
+                    </div>
+                 </div>
+              </div>
+             </div>
+           
+      </ng-container>
+
+    </div>
+    <div class="row">
+    <div class="col-md-5"></div>
+    <button mat-raised-button type="button" (click)="onSubmit(saveProductivityZoneResponse)"  class="btn btn-info col-md-2">Save</button>
+  <div class="col-md-5"></div> 
+</div> 
+  </form>
+
+    <ng-container *ngIf="showResult">
+      <div >
+        <div class="container-fluid">
+            <div class="row card">
+              <div class="card-body">
+                <h3>Now sort your work:</h3>
+                <h4 class="text-muted">a. Do strategic work when you are most productive. </h4>
+                <h4 class="text-muted">b. Conduct meetings and do calls when you feel the most collaborative. </h4>
+                <h4 class="text-muted">c. What people give you energy or drain your energy?  Work to manage this better. </h4>
+                <h4 class="text-muted">d. What type of work is more reactive and requires less intense thinking?  These might be tasks better suited for your lower energy times.</h4>
+
+              </div>
+            </div>
+        </div>
+      </div>
+    </ng-container>
+  </div>
+
+
+
+

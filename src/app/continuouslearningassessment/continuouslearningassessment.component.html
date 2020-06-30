@@ -1,0 +1,146 @@
+
+<div *ngIf="!questionsAreHidden">
+<form [formGroup]="saveContinuousLearningAssessmentResponse">
+  <div formArrayName="questionaire" *ngIf="showQuestions">
+    <ng-container *ngFor="let question of questions; index as i"  >
+
+        <div class="main-content" [hidden]="questions[i].isHidden">
+          <div class="container-fluid">
+              <div class="row">
+            
+                  <div class="col-md-12" >
+                      <div class="card"  style="top: 20px;">
+                        <div class="card-header card-header-info col-md-6" style="margin-bottom: 50px;" >
+                          <h2 class="card-title">Continuous Learning Assessment</h2> 
+                        </div>
+                          <div class="card-header card-header-info col-md-3" style="margin-left: 75px;">
+                              <h3 class="card-title">Question {{i+1}}/{{questions.length}}</h3> 
+                          </div>
+                          <div class="card-body">
+                                  <div class="row">
+                                  
+                                  <div class="col-md-12">
+                                    <div class="col-md-12 question">
+                                      {{questions[i].question}}
+                                    </div>                
+                                      <div class="col-md-12" >
+                                          <mat-radio-group aria-label="Select an option" [formControlName]="i"  class="pull-right">
+                                            <mat-radio-button [checked]="questions[i].yes" value="yes" >Yes</mat-radio-button>
+                                            <mat-radio-button [checked]="questions[i].somewhat"  value="somewhat">Somewhat</mat-radio-button>
+                                            <mat-radio-button [checked]="questions[i].no"  value="no">No</mat-radio-button>
+
+                                          </mat-radio-group>
+                                      </div>  
+                                  </div>                                                         
+                                  </div>
+                                  <button *ngIf="i > 0" (click)="goPrevious(i)" mat-raised-button type="button" class="btn btn-info pull-left">Back</button><button mat-raised-button type="button" (click)="onSubmit(saveContinuousLearningAssessmentResponse,i)"  class="btn btn-info pull-right">Next</button>
+                                  <div class="clearfix"></div>
+                          </div>
+                      </div>
+                  </div>
+                  <div class="col-md-1"></div>
+              </div>
+          </div>
+        </div>
+    </ng-container>
+  </div>
+  <div class="main-content" *ngIf ="showResult">
+    <div class="container-fluid" >
+        <div class="row">
+          <div class="col-md-2"></div>
+              <div class="col-md-8" >
+                <div class="card ">
+                  <div class="card-body">
+                    <div class="row">
+                      
+                      <div class="col-md-6">
+                        <div class="row">
+                          <h4> Your Response Counts:</h4>
+                          <div class="col-md-12">
+                            <div class="col-md-6" >
+                              <span style="color: #00bcd4; font-size: large; top: 20px;">Yes:</span>
+                              <span style="font-size: x-large; margin-left: 10px;">{{yesCount}}</span>
+
+                            </div>
+                          </div>
+                          <div class="col-md-12">
+                            <div class="col-md-6">
+                              <span style="color: #00bcd4; font-size: large; top: 20px;">Somewhat:</span>
+                              <span style="font-size: x-large; margin-left: 10px;">{{someWhatCount}}</span>
+                            </div>
+                          </div>
+                          <div class="col-md-12">
+                            <div class="col-md-6">
+                              <span style="color: #00bcd4; font-size: large; top: 20px;">No:</span>
+                              <span style="font-size: x-large; margin-left: 10px;">{{noCount}}</span>
+
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="col-md-6">
+                        <img style="float: right;height: 300px;" src="/assets/img/showScore.png"/>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+          </div>
+          <div class="row">
+            <div class="col-md-2"></div>
+                <div class="col-md-8" >
+                  <div class="card " >
+                    <div class="card-body">
+
+                      <div class="col-md-12">
+                        <label>Look at your Yes items.  These are your continuous learning strengths.  How can you use them more often and help others to build these skills?</label>
+                        <mat-form-field class="example-full-width">
+                          <input matInput placeholder="Your response" formControlName="yesresponse" type="text">
+                        </mat-form-field>
+                      </div>
+                      <div class="col-md-12">
+                        <label>Look at your No items.  These are areas that you can work on to improve. Can you write down 2- 3 of these to improve? (Seperate by comma)</label>
+                        <mat-form-field class="example-full-width">
+                          <input matInput placeholder="Your response" formControlName="noresponse" type="text">
+                        </mat-form-field>
+                      </div>
+                      <div class="col-md-12">
+                        <label>Now look at the somewhat column.  What situations can you think of where you can use continuous learning skills more often? (Seperate by comma)</label>
+                        <mat-form-field class="example-full-width">
+                          <input matInput placeholder="Your response" formControlName="somewhatresponse" type="text">
+                        </mat-form-field>
+                      </div>
+                    <div class="card-body">
+                      <div class="row">
+                        <div class="col-md-1"></div> 
+                       <div class="col-md-3"><button  (click)="checkResponseBack()" mat-raised-button type="button" class="btn btn-info ">Check Your Response</button></div> 
+                       <div class="col-md-1"></div> 
+                       <div class="col-md-3"><button (click)="submitFeedback(saveContinuousLearningAssessmentResponse)" mat-raised-button type="button" class="btn btn-info ">Submit Response</button></div> 
+                       <div class="col-md-1"></div> 
+                       <div class="col-md-3"><button (click)="retakeQuiz()" mat-raised-button type="button" class="btn btn-info ">Retake Quiz</button></div> 
+
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                </div>
+            <div class="col-md-2"></div>
+
+          </div>
+          <div class="row">
+            <div class="col-md-2"></div>
+                <div class="col-md-8" >
+                  <div class="card card-body" style="top: 10px;">
+                    <div class="card-header-info" style="margin-top: 0px;">
+                      <p>To learn tips about time management go to this site: </p>
+                      <a style="color: #fff;" href="https://cognizant.kpoint.com/app/video/gcc-c9a35be6-e671-4ec8-a22c-8f7dd31ff997?search=time%20management&score=35335.797&rank=2&vsrc=search">https://cognizant.kpoint.com/app/video/gcc-c9a35be6-e671-4ec8-a22c-8f7dd31ff997?search=time%20management&score=35335.797&rank=2&vsrc=search</a>
+                  
+                    </div>
+                  </div>
+                </div>
+            </div>
+    </div>
+  </div>
+</form>
+</div>
+

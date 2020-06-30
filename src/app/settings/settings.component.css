@@ -1,0 +1,9 @@
+.upload-drop-zone{
+    text-align: center;
+    height: 200px;
+    padding: 85px;
+    box-sizing: border-box;
+    border: solid 1px rgba(17, 8, 8, 0.349);
+    background-color: rgba(245, 245, 245, 0.863);
+    cursor: move;
+}

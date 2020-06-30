@@ -1,0 +1,19 @@
+<div class="logo">
+    <a href="javascript:void(0)" class="simple-text">
+        <div class="logo-img"> 
+            <img height="45px" src="/assets/img/CR-logo.png"/>
+        </div>
+        <!-- Cognizant Reflect -->
+    </a>
+</div>
+<div class="sidebar-wrapper" >
+ 
+    <ul class="nav">
+        <li routerLinkActive="active" *ngFor="let menuItem of menuItems" class="{{menuItem.class}} nav-item">
+            <a class="nav-link"  matTooltip="{{menuItem.title}}" [routerLink]="[menuItem.path]">
+                <i class="material-icons">{{menuItem.icon}}</i>
+              
+            </a>
+        </li>
+    </ul>
+</div>

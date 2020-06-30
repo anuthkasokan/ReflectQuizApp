@@ -1,0 +1,136 @@
+.tim-typo{
+  padding-left: 25%;
+  margin-bottom: 40px;
+  position: relative;
+  width: 100%;
+}
+.tim-typo .tim-note{
+  bottom: 5px;
+  color: #c0c1c2;
+  display: block;
+  font-weight: 400;
+  font-size: 13px;
+  line-height: 15px;
+  left: 0;
+  margin-left: 20px;
+  position: absolute;
+  width: 260px;
+}
+
+.question{
+  font-size: x-large;
+  margin: 42px;
+}
+
+.mat-radio-button.mat-accent.mat-radio-checked .mat-radio-outer-circle{
+  border-color: #328Dff; 
+}
+
+.mat-radio-button.mat-accent .mat-radio-inner-circle{
+  color :#328Dff; 
+  background-color :#328Dff; 
+}
+
+.mat-radio-button.mat-accent .mat-radio-ripple .mat-ripple-element {
+    background-color:rgb(255, 37, 37,.26)
+}
+
+.mat-radio-label-content{
+    padding-right: 8px !important;
+}
+.red-snackbar{
+  background: #328Dff;
+  margin-left: 0px;
+  color: white;
+}
+.green-snackbar{
+  background: #66bb6a;
+  margin-left: 0px;
+  color: white;
+}
+
+.icon-size{
+  font-size: 40px;
+}
+.brain{
+  background-image: url("../img/brain.png");
+  size: 60px;
+  color: #a9afbb;
+  background-repeat: no-repeat;
+}
+
+.emailheader{
+  border: 1px solid #328Dff;
+  padding: 8px 8px 8px 8px;
+  height: 50px;
+  overflow: hidden;
+}
+
+.emailbody{
+  border: 1px solid #328Dff;
+  padding: 8px 8px 8px 8px;
+  height: 100px;
+  overflow: hidden;
+}
+.emailfooter{
+  border: 1px solid #328Dff;
+  padding: 8px 8px 8px 8px;
+  height: 50px;
+  overflow: hidden;
+  margin-bottom: 20px;
+}
+
+.example-container {
+  height: 450px;
+  overflow: auto;
+}
+
+table {
+  width: 100%;
+}
+
+.card-top{
+  color: black;
+    font-size: 18px;
+    padding-top: 15px;
+}
+
+.progress{
+  top: 37%;
+    bottom: auto;
+    left: 54%;
+    transform: translateY(-50%) translateX(-50%);
+    font-size: 66.7143px;
+    position: absolute;
+    color: #0033a0;
+    font-weight: 400;
+    line-height: 1;
+    height: 74px;
+}
+
+.center {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -moz-transform: translateX(-50%) translateY(-50%);
+  -webkit-transform: translateX(-50%) translateY(-50%);
+  transform: translateX(-50%) translateY(-50%);
+}
+
+.overlay{
+  height:100vh;
+  width:100%;
+  background-color:rgba(0, 0, 0, 0.286);
+  z-index:    1032;
+  top:        0; 
+  left:       0; 
+  position:   fixed;
+}
+
+.fixed-top{
+  z-index: 5 !important;
+}
+
+.mat-progress-spinner circle, .mat-spinner circle {
+  stroke: #0033a0 !important;
+}

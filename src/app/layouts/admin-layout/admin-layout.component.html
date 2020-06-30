@@ -1,0 +1,95 @@
+<div class="wrapper">
+    <div class="sidebar" data-color="azure" data-background-color="white" data-image="./assets/img/sidebar-1.jpg">
+        <app-sidebar></app-sidebar>
+        <div class="sidebar-background" style="background-image: url(./assets/img/sidebar-4.jpg)"></div>
+    </div>
+    <div class="main-panel" style="width: 93.75%;">
+        <app-navbar></app-navbar>
+        <router-outlet></router-outlet>
+        <div *ngIf="isMaps('maps')">
+            <app-footer></app-footer>
+        </div>
+    </div>
+</div>
+
+<div class="fixed-plugin">
+    <div class="dropdown show-dropdown open" style="margin-left: -32px;">
+        <a href="#" data-toggle="dropdown" aria-expanded="true">
+            <i class="fa fa-weixin fa-5x" style="color: #0033a0;"> </i>
+        </a>
+        <div class="dropdown-menu" x-placement="bottom-start" style="position: absolute; top: 50px; left: -231px; will-change: top, left;">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="card">
+                            <div class="card-header card-header-primary col-md-6">
+                                <h4 class="card-title">Your Query</h4>                         
+                            </div>
+                            <div class="card-body">
+                             <form [formGroup]="saveQuery">
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <textarea matInput class="form-control"  rows="3" formControlName="query" placeholder="Ask any question to mentor"></textarea>
+                                    </div>
+                                    <div class="col-md-12" style="border-bottom: 1px solid #404040;"> </div>
+                                    <div class="col-md-12" style="text-align: center;">
+                                        <button mat-raised-button type="button" (click)="askMentor(saveQuery)" class="btn btn-primary">Ask</button>
+
+                                    </div>
+                                </div>
+                              </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- <li>
+                <a class="img-holder switch-trigger" href="javascript:void(0)">
+                    <img src="./assets/img/sidebar-1.jpg" alt="">
+                </a>
+            </li>
+            <li>
+                <a class="img-holder switch-trigger" href="javascript:void(0)">
+                    <img src="./assets/img/sidebar-2.jpg" alt="">
+                <div class="ripple-container"></div></a>
+            </li>
+            <li>
+                <a class="img-holder switch-trigger" href="javascript:void(0)">
+                    <img src="./assets/img/sidebar-3.jpg" alt="">
+                </a>
+            </li>
+            <li class="active">
+                <a class="img-holder switch-trigger" href="javascript:void(0)">
+                    <img src="./assets/img/sidebar-4.jpg" alt="">
+                </a>
+            </li>
+            <li class="button-container">
+                <div>
+                    <button class="btn btn-info btn-block btn-fill" data-toggle="modal" data-target="#buy">
+                        Download Free
+                    </button>
+                </div>
+            </li>
+            <li class="button-container">
+                <div>
+                    <button class="btn btn-warning btn-block btn-fill" data-toggle="modal" data-target="#buy">
+                        Buy Pro
+                    </button>
+                </div>
+            </li>
+            <li class="button-container text-center" routerLinkActive="active">
+              <div>
+                <a class="btn btn-default btn-block" href="https://demos.creative-tim.com/material-dashboard-angular2/#/documentation/tutorial">
+                    View Documentation
+                </a>
+              </div>
+            </li> -->
+        </div>
+    </div>
+</div>
+
+<!-- <span class="badge filter badge-purple" data-color="purple"></span>
+<span class="badge filter badge-azure" data-color="azure"></span>
+<span class="badge filter badge-green" data-color="green"></span>
+<span class="badge filter badge-orange" data-color="orange"></span>
+<span class="badge filter badge-danger active" data-color="danger"></span> -->

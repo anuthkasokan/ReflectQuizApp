@@ -1,0 +1,39 @@
+apiVersion: cert-manager.io/v1alpha2
+kind: Issuer
+metadata:
+  name: test-selfsigned
+  namespace: cognizantreflect
+spec:
+  selfSigned: {}
+---
+apiVersion: cert-manager.io/v1alpha2
+kind: Certificate
+metadata:
+  name: selfsigned-cert
+  namespace: cognizantreflect
+spec:
+  commonName: cognizantreflectapp.com
+  secretName: selfsigned-cert-tls
+  issuerRef:
+    name: test-selfsigned
+---
+
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: reflectui-ingress
+  namespace: cognizantreflect
+  annotations:
+    kubernetes.io/ingress.class: "nginx"
+spec:
+  tls:
+  - hosts: 
+    - cognizantreflectapp.com
+    secretName: selfsigned-cert-tls
+  rules:
+  - host: cognizantreflectapp.com 
+    http:
+      paths:
+      - backend:
+          serviceName: reflectappui
+          servicePort: 80
