@@ -13,7 +13,7 @@ import { MsalUserService } from 'app/msaluser.service';
 
 class feedback{
 id :number;
-userid :string;
+userId :string;
 question :string;
 assigned :string;
 status :string;
@@ -44,7 +44,7 @@ export class AdminLayoutComponent implements OnInit {
       (response: any) => {
         let userDetail = response;
   
-        localStorage.setItem("user",userDetail.userid);
+        localStorage.setItem("user",userDetail.userId);
         localStorage.setItem("role",userDetail.role);
   
       },
@@ -196,7 +196,7 @@ export class AdminLayoutComponent implements OnInit {
       if(sendQuery.value.query != undefined && sendQuery.value.query != '')
       {
           this.query =new feedback();
-          this.query.userid = localStorage.getItem("user");
+          this.query.userId = localStorage.getItem("user");
           this.query.question =sendQuery.value.query;
 
           console.log(this.query);

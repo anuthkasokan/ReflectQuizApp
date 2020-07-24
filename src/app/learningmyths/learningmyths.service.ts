@@ -3,7 +3,7 @@ import {HttpClient, HttpHeaders} from '@angular/common/http'
 import { MsalUserService } from 'app/msaluser.service';
 
 var url ='https://cognizantreflectapi.com/LearningMyths/'
-// var url = 'http://localhost:16500/LearningMyths/';
+// var url = 'https://cognizantreflectapi.com/LearningMyths/';
 
 @Injectable({
   providedIn: 'root'

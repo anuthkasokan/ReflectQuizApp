@@ -2,9 +2,9 @@ import { Injectable } from "@angular/core";
 import { HttpClient, HttpHeaders, HttpParams } from "@angular/common/http";
 import { MsalUserService } from "app/msaluser.service";
 
-var feedbackUrl = 'https://cognizantreflectapi.com/feedback/Feedback/';
+var feedbackUrl = 'https://cognizantreflectapi.com/dashboard/';
 var apiUrl ='https://cognizantreflectapi.com/blindspot/';
-var userUrl ='https://cognizantreflectapi.com/users/userdetails/';
+var userUrl ='https://cognizantreflectapi.com/dashboard/';
 var emailUrl ='https://cognizantreflectapi.com/email/EmailService/';
 
 @Injectable()

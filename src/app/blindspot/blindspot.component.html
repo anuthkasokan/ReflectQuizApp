@@ -70,7 +70,7 @@
                                   </mat-form-field>
                                   
                                   <mat-autocomplete #auto="matAutocomplete">
-                                    <mat-option *ngFor="let option of coworkers" [value]="option.userid">{{option.userid}}</mat-option>
+                                    <mat-option *ngFor="let option of coworkers" [value]="option.userId">{{option.userId}}</mat-option>
                                   </mat-autocomplete>
                                 </div> 
                                 <div class="col-md-12"></div>
@@ -106,7 +106,7 @@
                 <div class="card-header card-header-info col-md-4">
                   <h4>Arena</h4>
                 </div>
-                <div class="card-body" style="height:350px;word-wrap: break-word;">
+                <div class="card-body" style="height:350px; overflow-y: auto;">
                  <div *ngFor="let option of getResultData.arena; index as i" >
                    {{i+1}}: {{option}}
                  </div>
@@ -118,7 +118,7 @@
                 <div class="card-header card-header-success col-md-4">
                  <h4>BlindSpot</h4> 
                 </div>
-                <div class="card-body" style="height:350px;word-wrap: break-word;">
+                <div class="card-body" style="height:350px; overflow-y: auto;">
                  <div *ngFor="let option of getResultData.blindspot; index as i" >
                    {{i+1}}: {{option}}
                  </div>
@@ -132,7 +132,7 @@
                 <div class="card-header card-header-primary col-md-4">
                   <h4>Façade</h4>
                 </div>
-                <div class="card-body" style="height:350px;word-wrap: break-word;">
+                <div class="card-body" style="height:350px; overflow-y: auto;">
                  <div *ngFor="let option of getResultData.facade; index as i" >
                    {{i+1}}: {{option}}
                  </div>
@@ -144,7 +144,7 @@
                 <div class="card-header card-header-blank col-md-4">
                  <h4>Unknown</h4> 
                 </div>
-                <div class="card-body" style="height:350px;word-wrap: break-word;">
+                <div class="card-body" style="height:350px; overflow-y: auto;">
                  <div *ngFor="let option of getResultData.unknown; index as i" >
                    {{i+1}}: {{option}}
                  </div>

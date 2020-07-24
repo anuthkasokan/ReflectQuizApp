@@ -22,7 +22,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 }
 
 class makeTimeForMeResponse{
-  userid: string;
+  userId: string;
   questionid: number;
   answer: string;
   score:number;
@@ -106,7 +106,7 @@ export class MaketimeformeComponent implements OnInit {
 
   storeUserResponse(answer:any,index:any){
     let response = new makeTimeForMeResponse();
-    response.userid= localStorage.getItem('user');
+    response.userId= localStorage.getItem('user');
     response.questionid = this.questions[index].id;
     response.score =answer;
 

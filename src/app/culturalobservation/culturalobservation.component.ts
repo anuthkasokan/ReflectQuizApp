@@ -8,7 +8,7 @@ class question {
  
   }
   class userResponse{
-    userid: string;
+    userId: string;
     questionid: number;
     topic: string;
     date :string;
@@ -82,7 +82,7 @@ export class CulturalobservationComponent implements OnInit {
       
       culturalobservationResponse.value.questionaire.forEach(element => {
         let response= new userResponse()
-        response.userid=localStorage.getItem("user");
+        response.userId=localStorage.getItem("user");
         response.topic= element.topic;
         response.questionid =this.questions[i].id;
         response.scoring = element.scoring;

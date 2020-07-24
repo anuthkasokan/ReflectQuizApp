@@ -9,7 +9,7 @@ class Notification{
   notificationId:number;
   question:string;
   notificationType:string;
-  userid:string;
+  userId:string;
   feedback:string;
 }
 
@@ -17,12 +17,12 @@ export interface InputData{
   id:number;
   notification:string;
   notificationType:string;
-  userid:string;
+  userId:string;
 }
 
 
 class userResponse{
-  userid:string;
+  userId:string;
   attemptId:number;
   selectedAdjectives:Array<string>;
   }
@@ -50,7 +50,7 @@ ngOnInit(){
   this.notification.notificationId=this.data.id;
   this.notification.notificationType=this.data.notificationType;
   this.notification.question=this.data.notification;
-  this.notification.userid=this.data.userid;
+  this.notification.userId=this.data.userId;
 
 
   if(this.data.notificationType == 'blindspot')
@@ -142,7 +142,7 @@ submitNotification(saveNotification:FormGroup){
     }
   
     let response = new userResponse();
-    response.userid = localStorage.getItem("user");
+    response.userId = localStorage.getItem("user");
     response.attemptId = this.notification.notificationId;
     response.selectedAdjectives= this.selectedAdjectives;
 
@@ -170,7 +170,7 @@ submitNotification(saveNotification:FormGroup){
       return;
     }
     let feedback:any={
-      userid :localStorage.getItem("user"),
+      userId :localStorage.getItem("user"),
       feedbackid: this.notification.notificationId,
       feedback:saveNotification.value.feedback
 

@@ -6,7 +6,7 @@ import { group } from '@angular/animations';
 
 
 class ProductivityZoneResponse{
-  userid: string;
+  userId: string;
   questionid: number;
   answer: string;
   rating:Rating;
@@ -68,7 +68,7 @@ export class ProductivityZoneComponent implements OnInit {
       let i=0;
       productivityzoneresponseresponse.value.questionaire.forEach(element => {
         let userResponse = new ProductivityZoneResponse();
-        userResponse.userid=localStorage.getItem('user');
+        userResponse.userId=localStorage.getItem('user');
         userResponse.questionid = this.questions[i].id;
         userResponse.answer= element;
         // userResponse.rating = new Rating();

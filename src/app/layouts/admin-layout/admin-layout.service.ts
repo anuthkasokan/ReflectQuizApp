@@ -2,7 +2,7 @@ import { Injectable } from "@angular/core";
 import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { MsalUserService } from "app/msaluser.service";
 
-var url = 'https://cognizantreflectapi.com/feedback/Feedback/';
+var url = 'https://cognizantreflectapi.com/dashboard/';
 
 
 @Injectable()

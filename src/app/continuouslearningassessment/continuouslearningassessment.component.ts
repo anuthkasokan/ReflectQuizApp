@@ -13,7 +13,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 }
 
 class continuousLearningAssessmentResponse{
-  userid: string;
+  userId: string;
   questionid: number;
   answer:string;
   yes: boolean;
@@ -22,7 +22,7 @@ class continuousLearningAssessmentResponse{
 }
 
 class continuousFeedback{
-  userid: string;
+  userId: string;
   ResponseFromYes: string;
   ResponseFromNo: string;
   ResponseFromSomeWhat: string 
@@ -116,7 +116,7 @@ export class ContinuousLearningAssessmentComponent implements OnInit {
 
   storeUserResponse(answer:any,index:any){
     let response = new continuousLearningAssessmentResponse();
-    response.userid=localStorage.getItem("user");
+    response.userId=localStorage.getItem("user");
     response.questionid = this.questions[index].id;
     response.answer = answer;
     if(answer =="yes")
@@ -245,7 +245,7 @@ export class ContinuousLearningAssessmentComponent implements OnInit {
       continuouslearningassessmentresponse.value.somewhatresponse)
       {
         this.feedback = new continuousFeedback();
-        this.feedback.userid= localStorage.getItem("user");
+        this.feedback.userId= localStorage.getItem("user");
         this.feedback.ResponseFromYes = continuouslearningassessmentresponse.value.yesresponse;
         this.feedback.ResponseFromNo = continuouslearningassessmentresponse.value.noresponse;
         this.feedback.ResponseFromSomeWhat = continuouslearningassessmentresponse.value.somewhatresponse;

@@ -94,7 +94,7 @@ export class SettingsComponent implements OnInit {
           
           let feedbackGroup = this.formBuilder.group({
               id:element.id,
-              userid:element.userid,
+              userId:element.userId,
               question:element.question,
               assigned:element.assigned
           });
@@ -206,7 +206,7 @@ saveTemplate(saveTemplate:FormGroup)
 createFeedback(): FormGroup {
   return this.formBuilder.group({
     id: 0,
-    userid: '',
+    userId: '',
     question: '',
     assigned:''
   });
@@ -218,7 +218,7 @@ addFeedback()
     newFeedback.push(this.createFeedback());
       this.questions.push({
         id: 0,
-        userid: '',
+        userId: '',
         question: '',
         assigned:''
       });

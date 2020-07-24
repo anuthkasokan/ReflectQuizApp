@@ -20,8 +20,8 @@ describe('BlindSpotComponent', () => {
     { id: 2, adjectives: [] }
   ]
   const users = [
-    { userid: 1, emailid: "" },
-    { userid: 2, emailid: "" }
+    { userId: 1, emailid: "" },
+    { userId: 2, emailid: "" }
   ]
 
 

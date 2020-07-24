@@ -9,7 +9,7 @@
               </mat-form-field>
               
               <mat-autocomplete #auto="matAutocomplete" (optionSelected)="filterDashboard($event)">
-                <mat-option *ngFor="let user of users" [value]="user.userid">{{user.userid}}</mat-option>
+                <mat-option *ngFor="let user of users" [value]="user.userId">{{user.userId}}</mat-option>
               </mat-autocomplete>
                 
         </div>

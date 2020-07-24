@@ -96,15 +96,15 @@ describe('CuriousquizComponent', () => {
     expect(component.score).toEqual(0)
   });
   class userResponse{
-    userid: string;
+    userId: string;
     questionid: number;
     answer: boolean;
     score: number;
   }
   it('stroreUserResponse Method should map the user response muliple response available', () => {
     let index = 1
-    component.userResponses = [{userid: "1",questionid: 1,answer: true,score: 1},
-    {userid: "1",questionid: 1,answer: true,score: 1}]
+    component.userResponses = [{userId: "1",questionid: 1,answer: true,score: 1},
+    {userId: "1",questionid: 1,answer: true,score: 1}]
     component.questions = questions;
     component.storeUserResponse(component.saveCuriousResponse,index);
     expect(component.score).toEqual(0)

@@ -135,11 +135,11 @@
                                 <mat-header-cell *matHeaderCellDef  class="col-md-3"><h4><b> Employee</b></h4></mat-header-cell>
                                 <mat-cell *matCellDef="let element; let index = index" [formGroupName]="index"  class="col-md-3">
                                   <mat-form-field style=" width: 100%;">
-                                    <input type="text" matInput placeholder="Employee" formControlName="userid" [matAutocomplete]="auto" maxlength="50">
+                                    <input type="text" matInput placeholder="Employee" formControlName="userId" [matAutocomplete]="auto" maxlength="50">
                                   </mat-form-field>
                                   
                                   <mat-autocomplete #auto="matAutocomplete">
-                                    <mat-option *ngFor="let user of users" [value]="user.userid">{{user.userid}}</mat-option>
+                                    <mat-option *ngFor="let user of users" [value]="user.userId">{{user.userId}}</mat-option>
                                   </mat-autocomplete>
                                 </mat-cell>
                               </ng-container>  
@@ -163,7 +163,7 @@
                                     </mat-form-field>
                                     
                                     <mat-autocomplete #auto="matAutocomplete">
-                                      <mat-option *ngFor="let user of users" [value]="user.userid">{{user.userid}}</mat-option>
+                                      <mat-option *ngFor="let user of users" [value]="user.userId">{{user.userId}}</mat-option>
                                     </mat-autocomplete>
                                   </mat-cell>
                               </ng-container>

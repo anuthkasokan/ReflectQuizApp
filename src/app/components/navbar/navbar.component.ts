@@ -23,7 +23,7 @@ export class NavbarComponent implements OnInit {
     notifications:Array<any>;
     initialNotificationCount=0;
     username="";
-    userid="";
+    userId="";
     showForAdmin =false;
 
     @HostListener("window:scroll", [])
@@ -35,7 +35,7 @@ export class NavbarComponent implements OnInit {
             this.initialNotificationCount +=5;
         if(this.notificationCount >= this.initialNotificationCount)
         {
-            this.notificationService.getNotifications(this.userid,this.initialNotificationCount,5)
+            this.notificationService.getNotifications(this.userId,this.initialNotificationCount,5)
             .subscribe(
                 (response: any[]) => {
   
@@ -71,19 +71,19 @@ export class NavbarComponent implements OnInit {
   .subscribe(
     (response: any) => {
        let userDetail = response;
-       this.userid = userDetail[0].userid;
+       this.userId = userDetail[0].userId;
         if(userDetail[0].role=="Admin")
         {
             this.showForAdmin =true;
         }
-        this.notificationService.getNotifications(this.userid,this.initialNotificationCount,5)
+        this.notificationService.getNotifications(this.userId,this.initialNotificationCount,5)
         .subscribe(
           (response: any[]) => {
               this.notifications = response;
   
           });
   
-        this.notificationService.getNotificationsCount(this.userid)
+        this.notificationService.getNotificationsCount(this.userId)
         .subscribe(
           (response: any) => {
               this.notificationCount =  response;
@@ -199,7 +199,7 @@ export class NavbarComponent implements OnInit {
     {
         const dialogRef = this.dialog.open(OpenNotificationComponent, {
 
-            data: {id:notification.id, userid:notification.userid, notification:notification.question,notificationType:notification.type}
+            data: {id:notification.id, userId:notification.userId, notification:notification.question,notificationType:notification.type}
           });
     
     

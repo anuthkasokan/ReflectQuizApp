@@ -4,7 +4,7 @@ import { BlindSpotService } from './blindspot.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 
 class userResponse{
-userid:string;
+userId:string;
 selectedadjectives:Array<string>;
 selectedcoWorkers: Array<string>;
 }
@@ -35,9 +35,10 @@ export class BlindSpotComponent implements OnInit {
     this.blindSpotService.showBlindSpotResult(localStorage.getItem("user"))
     .subscribe(
       (success: any) => {
-        this.showBlindspot=true;
-        if(success.id !=0 )
+
+        if(success != null )
         {
+          this.showBlindspot=true;
           this.getResultData= success; 
           this.showQuestions = false;
           this.showResult = true;  
@@ -147,13 +148,13 @@ export class BlindSpotComponent implements OnInit {
     }
 
     let response = new userResponse();
-    response.userid=localStorage.getItem("user");
+    response.userId=localStorage.getItem("user");
     response.selectedadjectives= this.selectedAdjectives;
     response.selectedcoWorkers = saveBlindSpotResponse.value.selectcoworkers;
     this.blindSpotService.submitblindspotresponse(response)
     .subscribe(
       (success: any) => {
-        this.blindSpotService.showBlindSpotResult(response.userid)
+        this.blindSpotService.showBlindSpotResult(response.userId)
         .subscribe(
           (success: any) => {
            this.getResultData= success; 

@@ -2,7 +2,7 @@ import { Injectable } from "@angular/core";
 import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { MsalUserService } from "app/msaluser.service";
 
-var feedBackUrl = 'https://cognizantreflectapi.com/feedback/Feedback/';
+var feedBackUrl = 'https://cognizantreflectapi.com/dashboard/';
 var blindSpotUrl='https://cognizantreflectapi.com/blindspot/'
 
 

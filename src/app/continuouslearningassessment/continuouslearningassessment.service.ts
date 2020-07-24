@@ -3,7 +3,7 @@ import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { MsalUserService } from "app/msaluser.service";
 
 var url = 'https://cognizantreflectapi.com/ContinuousLearningAssessmentQuiz/'
-// var url = 'http://localhost:16500/ContinuousLearningAssessmentQuiz/';
+// var url = 'https://cognizantreflectapi.com/ContinuousLearningAssessmentQuiz/';
 
 @Injectable()
 export class ContinuousLearningAssessmentService {

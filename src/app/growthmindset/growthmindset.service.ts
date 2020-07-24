@@ -3,10 +3,10 @@ import {HttpClient, HttpHeaders} from '@angular/common/http'
 import { MsalUserService } from 'app/msaluser.service';
 
 var url ='https://cognizantreflectapi.com/GrowthMindsetQuiz/'
-// var url = 'http://localhost:16500/GrowthMindsetQuiz/';
+// var url = 'https://cognizantreflectapi.com/GrowthMindsetQuiz/';
 
 class userResponse{
-  userid: number;
+  userId: number;
   questionid: number;
   answer: boolean;
   score: number;

@@ -67,7 +67,7 @@ export class DashboardComponent implements OnInit {
     .subscribe(
       (response: any) => {
         let userDetails = response;
-        localStorage.setItem("user",userDetails[0].userid);
+        localStorage.setItem("user",userDetails[0].userId);
         localStorage.setItem("role",userDetails[0].role);
         if(userDetails[0].role =="Admin")
         {
@@ -82,7 +82,7 @@ export class DashboardComponent implements OnInit {
           );
         }
         else{
-          this.getUserWiseAllData(userDetails[0].userid);
+          this.getUserWiseAllData(userDetails[0].userId);
         }
       },
       (error) => console.log(error)

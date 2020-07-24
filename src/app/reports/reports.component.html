@@ -13,8 +13,8 @@
                                 <mat-form-field  class="ca80">
                                     <mat-label>Select User</mat-label>
                                     <mat-select [(ngModel)]="userSelectValue" placeholder="Select a user" (selectionChange)="onSelectUser($event)">
-                                        <mat-option *ngFor="let usr of users"  [value]="usr.userid">
-                                        {{usr.userid}}
+                                        <mat-option *ngFor="let usr of users"  [value]="usr.userId">
+                                        {{usr.userId}}
                                         </mat-option>
                                     </mat-select>
                                 </mat-form-field>

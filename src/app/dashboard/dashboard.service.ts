@@ -3,8 +3,6 @@ import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { MsalUserService } from "app/msaluser.service";
 
 var url = 'https://cognizantreflectapi.com/Dashboard/';
-var feedbackUrl = 'https://cognizantreflectapi.com/feedback/Feedback/';
-var userUrl ='https://cognizantreflectapi.com/users/userdetails/';
 
 @Injectable()
 export class DashboardService {
@@ -34,12 +32,12 @@ export class DashboardService {
 
     getRoleByUser(emailId:any)
     {
-       return this.httpClient.get(userUrl+"getUser/"+emailId,this.httpOptions);
+       return this.httpClient.get(url+"getUser/"+emailId,this.httpOptions);
     }
 
     getUsers()
     {
-      return  this.httpClient.get(userUrl+"getUser",this.httpOptions);
+      return  this.httpClient.get(url+"getUser",this.httpOptions);
     }
 
     getScoreChartByUser(user:any) {
@@ -112,11 +110,11 @@ export class DashboardService {
     {
         if(user=='')
         {
-            return this.httpClient.get(feedbackUrl+"getFeedbackDetailsForAdmin",this.httpOptions);
+            return this.httpClient.get(url+"getFeedbackDetailsForAdmin",this.httpOptions);
         }
         else
         {
-            return this.httpClient.get(feedbackUrl+"getAdminComments/"+user,this.httpOptions);
+            return this.httpClient.get(url+"getAdminComments/"+user,this.httpOptions);
         }
 
     }

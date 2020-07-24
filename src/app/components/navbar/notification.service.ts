@@ -2,8 +2,8 @@ import { Injectable } from "@angular/core";
 import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { MsalUserService } from "app/msaluser.service";
 
-var url ='https://cognizantreflectapi.com/feedback/Feedback/';
-var userUrl ='https://cognizantreflectapi.com/users/userdetails/';
+var url ='https://cognizantreflectapi.com/dashboard/';
+var userUrl ='https://cognizantreflectapi.com/dashboard/';
 
 
 @Injectable()
@@ -18,9 +18,9 @@ export class NotificationService {
   
     }; 
 
-    getNotificationsCount(userid:string)
+    getNotificationsCount(userId:string)
     {
-        return this.httpClient.get(url+"getNotificationsCount/"+userid,this.httpOptions);
+        return this.httpClient.get(url+"getNotificationsCount/"+userId,this.httpOptions);
     }
 
     getNotifications(user:any, start:any, count:any)

@@ -15,7 +15,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 
 
 class userResponse{
-  userid: string;
+  userId: string;
   questionid: number;
   answer: string;
   selectedoptions:Array<any>;
@@ -82,7 +82,7 @@ export class ReflectionToolComponent implements OnInit {
       let i=0;
       reflectionToolResponse.value.questionaire.forEach(element => {
         let response = new userResponse();
-        response.userid=localStorage.getItem("user");
+        response.userId=localStorage.getItem("user");
         response.questionid = this.questions[i].id;
         response.answer= this.questions[i].type != "select"? element:null;
         response.selectedoptions = this.questions[i].type =="select"?element:null;

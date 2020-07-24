@@ -3,7 +3,7 @@ import * as Msal from 'msal';
 import { Observable } from "rxjs";
 import { HttpClient, HttpHeaders } from "@angular/common/http";
 
-var url = 'https://cognizantreflectapi.com/users/userDetails/';
+var url = 'https://cognizantreflectapi.com/dashboard/';
 
 const msalConfig:Msal.Configuration = {
     auth: {

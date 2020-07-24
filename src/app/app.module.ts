@@ -20,7 +20,7 @@ export const protectedResourceMap:[string, string[]][]=[];
       auth:{
         clientId:'5ad37ea5-ce50-4e8f-a178-8a05f57cb4cd',
         authority: 'https://login.microsoftonline.com/cea101fb-acfa-4ba2-90e9-5a83909297e7',
-        redirectUri: 'http://localhost:4200/',
+        redirectUri: 'https://cognizantreflectapp.com/',
         
       }
     }, {

@@ -37,7 +37,7 @@
                         <i class="material-icons" style="color: #404040;">notifications</i>
                         <span class="notification">{{notificationCount}}</span>
                     </a>
-                    <div class="dropdown-menu dropdown-menu-right" id="navbarNotificationList" aria-labelledby="navbarDropdownMenuLink" (scroll)="onScroll()" style="width: 300px;overflow: overlay;max-height: 285px;">
+                    <div class="dropdown-menu dropdown-menu-right" id="navbarNotificationList" aria-labelledby="navbarDropdownMenuLink" (scroll)="onScroll()" style="width: 300px;overflow-y: scroll;max-height: 255px;">
                        <div *ngFor="let notification of notifications;" >
                   
                         <a class="dropdown-item" style="white-space: break-spaces !important;" (click)="openNotification(notification)" href="javascript:void(0)">{{notification.question}}</a>

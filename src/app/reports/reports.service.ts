@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { MsalUserService } from 'app/msaluser.service';
 
-var userUrl ='https://cognizantreflectapi.com/users/userdetails/';
+var userUrl ='https://cognizantreflectapi.com/dashboard/';
 var url ='https://cognizantreflectapi.com/Reports/';
 
 @Injectable({
@@ -26,9 +26,9 @@ export class ReportsService {
     return this.httpClient.get(userUrl+"getUser",this.httpOptions);
   }
 
-  getReportData(userid:string,quizId:number,attemptId:number){
+  getReportData(userId:string,quizId:number,attemptId:number){
     
-    return this.httpClient.get(url+"getReportData/"+userid+"/"+quizId+"/"+attemptId,this.httpOptions);
+    return this.httpClient.get(url+"getReportData/"+userId+"/"+quizId+"/"+attemptId,this.httpOptions);
 
   }
 

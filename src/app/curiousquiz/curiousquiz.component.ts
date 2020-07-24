@@ -15,7 +15,7 @@ import { getLocaleDateFormat } from '@angular/common';
 }
 
 class userResponse{
-  userid: string;
+  userId: string;
   questionid: number;
   answer: boolean;
   score: number;
@@ -114,7 +114,7 @@ export class CuriousquizComponent implements OnInit {
 
   storeUserResponse(answer:any,index:any){
     let response = new userResponse();
-    response.userid= localStorage.getItem("user");
+    response.userId= localStorage.getItem("user");
     response.questionid = this.questions[index].id;
     response.answer = answer;
     response.score = this.questions[index].answer ==answer?1:0;
